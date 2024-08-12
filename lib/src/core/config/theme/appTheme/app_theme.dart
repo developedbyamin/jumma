@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jumma/src/core/config/theme/appTheme/elevated_button_theme.dart';
+import 'package:jumma/src/core/config/theme/appTheme/outlined_button_theme.dart';
 import 'package:jumma/src/core/config/theme/appTheme/slider_theme.dart';
 import 'package:jumma/src/core/config/theme/appTheme/tab_bar_theme.dart';
 import 'package:jumma/src/core/config/theme/appTheme/text_button_theme.dart';
@@ -22,6 +23,7 @@ class AppTheme {
     tabBarTheme: JummaTabBarTheme.tabBarTheme,
     inputDecorationTheme: JummaInputDecorationTheme.inputDecorationTheme,
     elevatedButtonTheme: JummaElevatedButtonTheme.elevatedButtonThemeData,
+    outlinedButtonTheme: JummaOutlinedButtonTheme.outlinedButtonThemeData,
     textTheme: JummaTextTheme.textTheme,
   );
 }

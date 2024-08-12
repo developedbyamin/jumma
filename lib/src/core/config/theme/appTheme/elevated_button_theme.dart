@@ -8,9 +8,9 @@ class JummaElevatedButtonTheme{
       backgroundColor: AppColors.primary,
       foregroundColor: Colors.white,
       elevation: 0,
-      textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+      textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700, fontFamily: 'DMSans'),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(4),
       ),
     ),
   );
