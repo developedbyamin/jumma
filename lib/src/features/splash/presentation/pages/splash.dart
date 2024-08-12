@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../../core/assets/assets/app_vectors.dart';
+import 'package:jumma/src/core/config/theme/app_colors.dart';
+import 'package:jumma/src/features/auth/presentation/pages/signup_signin.dart';
+import '../../../../core/assets/assets/app_vectors.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -14,11 +15,11 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (BuildContext context) => const GetStartedPage(),
+          builder: (BuildContext context) => const SignUpSignInPage(),
         ),
       );
     });
@@ -26,9 +27,14 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primary,
       body: Center(
         child: SvgPicture.asset(
           AppVectors.logo,
+          colorFilter: const ColorFilter.mode(
+            Colors.white,
+            BlendMode.srcIn,
+          ),
         ),
       ),
     );

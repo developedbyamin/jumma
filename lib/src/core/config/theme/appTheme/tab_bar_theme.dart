@@ -2,22 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../app_colors.dart';
 
-class MeloTabBarTheme{
+class JummaTabBarTheme{
 
-  static const TabBarTheme lightTabBarTheme = TabBarTheme(
+  static const TabBarTheme tabBarTheme = TabBarTheme(
     labelColor: Colors.black,
     indicatorColor: AppColors.primary,
     dividerColor: Colors.transparent,
     overlayColor: WidgetStatePropertyAll(Colors.transparent),
   );
-
-  static const TabBarTheme darkTabBarTheme = TabBarTheme(
-    labelColor: Colors.white,
-    indicatorColor: AppColors.primary,
-    dividerColor: Colors.transparent,
-    overlayColor: WidgetStatePropertyAll(Colors.transparent),
-  );
-
-
-
 }

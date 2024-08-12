@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class MeloTextButtonTheme{
+class JummaTextButtonTheme{
 
-  static TextButtonThemeData lightTextButtonThemeData = TextButtonThemeData(
+  static TextButtonThemeData textButtonThemeData = TextButtonThemeData(
     style: ButtonStyle(
       foregroundColor: WidgetStateProperty.resolveWith<Color>(
             (Set<WidgetState> states) {
@@ -12,14 +12,5 @@ class MeloTextButtonTheme{
     ),
   );
 
-  static TextButtonThemeData darkTextButtonThemeData = TextButtonThemeData(
-    style: ButtonStyle(
-      foregroundColor: WidgetStateProperty.resolveWith<Color>(
-            (Set<WidgetState> states) {
-          return Colors.white;
-        },
-      ),
-    ),
-  );
 
 }
