@@ -65,7 +65,7 @@ class SignUpSignInPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (BuildContext context) => const SignInPage(),
+                          builder: (BuildContext context) => SignInPage(),
                         ),
                       );
                     },
@@ -112,14 +112,26 @@ class SignUpSignInPage extends StatelessWidget {
                 height: 40,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   JummaIconButton(
-                      onPressed: () {}, iconPath: AppVectors.google),
+                    onPressed: () {},
+                    iconPath: AppVectors.google,
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
                   JummaIconButton(
-                      onPressed: () {}, iconPath: AppVectors.facebook),
+                    onPressed: () {},
+                    iconPath: AppVectors.facebook,
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
                   JummaIconButton(
-                      onPressed: () {}, iconPath: AppVectors.twitter),
+                    onPressed: () {},
+                    iconPath: AppVectors.twitter,
+                  ),
                 ],
               )
             ],
