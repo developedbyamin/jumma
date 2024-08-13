@@ -11,6 +11,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      shadowColor: Colors.black,
+      elevation: 30,
       height: MediaQuery.of(context).size.height * 0.12,
       color: Colors.white,
       child: Row(

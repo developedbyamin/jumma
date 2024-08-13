@@ -30,6 +30,7 @@ flutter:
   assets:
     - assets/
     - assets/vectors/
+    - assets/images/
 
 
   fonts:

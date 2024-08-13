@@ -24,6 +24,13 @@ class _SignInPageState extends State<SignInPage> {
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
@@ -56,9 +63,10 @@ class _SignInPageState extends State<SignInPage> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Sign in successful!', style: TextStyle(color: Colors.white),),backgroundColor: AppColors.primary, duration: Duration(seconds: 1),),
                     );
-                    Navigator.pushReplacement(
+                    Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (_) => const Root()),
+                      MaterialPageRoute(builder: (context) => const Root()),
+                          (Route<dynamic> route) => false,
                     );
                   } else if (state is SignInFailure) {
                     ScaffoldMessenger.of(context).showSnackBar(

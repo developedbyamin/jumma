@@ -14,6 +14,7 @@ class AppVectors{
   static const String time = '${basePath}time$format';
   static const String profile = '${basePath}profile$format';
   static const String market = '${basePath}market$format';
+  static const String notification = '${basePath}notification$format';
 
 
 }
