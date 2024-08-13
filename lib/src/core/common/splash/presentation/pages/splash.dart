@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jumma/src/core/config/theme/app_colors.dart';
 import 'package:jumma/src/features/auth/presentation/pages/signup_signin.dart';
-import '../../../../core/assets/assets/app_vectors.dart';
+
+import '../../../../assets/assets/app_vectors.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

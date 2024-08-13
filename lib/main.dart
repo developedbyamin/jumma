@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jumma/service_locator.dart';
+import 'package:jumma/src/core/common/bottom_navigation_bar/bloc/bottom_nav_bloc.dart';
+import 'package:jumma/src/core/common/splash/presentation/pages/splash.dart';
 import 'package:jumma/src/core/config/theme/appTheme/app_theme.dart';
-import 'package:jumma/src/features/auth/presentation/viewmodel/signup_cubit.dart';
-import 'package:jumma/src/features/splash/presentation/pages/splash.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,17 +20,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: AppTheme.themeJumma,
-      title: 'Jumma',
-      debugShowCheckedModeBanner: false,
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider<SignUpCubit>(
-            create: (context) => SignUpCubit(),
-          ),
-        ],
-        child: SplashPage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<BottomNavBloc>(
+          create: (context) => BottomNavBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        theme: AppTheme.themeJumma,
+        title: 'Jumma',
+        debugShowCheckedModeBanner: false,
+        home: const SplashPage(),
       ),
     );
   }

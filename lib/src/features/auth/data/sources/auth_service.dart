@@ -11,6 +11,7 @@ class AuthServiceImpl extends AuthService{
   @override
   Future<Either> signIn(SignInUserModel signInUserReq) async{
     try {
+      await Future.delayed(const Duration(seconds: 2));
       return const Right('Sign in was succsessful');
     } catch (e) {
       return const Left('message');
@@ -20,6 +21,7 @@ class AuthServiceImpl extends AuthService{
   @override
   Future<Either> signUp(SignUpUserModel createUserReq) async {
     try {
+      await Future.delayed(const Duration(seconds: 2));
       return const Right('Sign up was succsessful');
     } catch (e) {
       return const Left('message');

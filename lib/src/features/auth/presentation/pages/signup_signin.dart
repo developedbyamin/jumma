@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:jumma/src/common/widgets/elevated_button.dart';
-import 'package:jumma/src/common/widgets/icon_button.dart';
-import 'package:jumma/src/common/widgets/outlined_button.dart';
 import 'package:jumma/src/core/config/theme/app_colors.dart';
 import 'package:jumma/src/features/auth/presentation/pages/signin.dart';
 import 'package:jumma/src/features/auth/presentation/pages/signup.dart';
-
 import '../../../../core/assets/assets/app_vectors.dart';
+import '../../../../core/common/widgets/elevated_button.dart';
+import '../../../../core/common/widgets/icon_button.dart';
+import '../../../../core/common/widgets/outlined_button.dart';
 
 class SignUpSignInPage extends StatelessWidget {
   const SignUpSignInPage({super.key});
@@ -65,7 +64,7 @@ class SignUpSignInPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (BuildContext context) => SignInPage(),
+                          builder: (BuildContext context) => const SignInPage(),
                         ),
                       );
                     },

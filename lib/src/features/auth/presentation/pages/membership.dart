@@ -14,7 +14,7 @@ class Membership extends StatelessWidget {
         elevation: 0,
         surfaceTintColor: Colors.transparent,
         automaticallyImplyLeading: false,
-        title: Text(
+        title: const Text(
           'MEMBERSHIP AGREEMENT',
           style: TextStyle(
             color: AppColors.primary,
@@ -29,7 +29,7 @@ class Membership extends StatelessWidget {
           )
         ],
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Text("""Please read these 'site terms of use' carefully before using our site.
 Our customers who use and shop on this shopping site are assumed to have accepted the following terms:
 The web pages on our site and all pages linked to it ('site') belong to and are operated by ……………………………….company ('Company') at ………………………. While you ('User') use all services offered on the site, you are subject to the following conditions, by benefiting from and continuing to use the service on the site; You are deemed to have the right, authority and legal capacity to sign a contract in accordance with the laws you are bound by, and that you are over 18 years of age, that you have read and understood this contract and that you are bound by the terms written in the contract.

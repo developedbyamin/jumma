@@ -2,15 +2,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:jumma/src/common/widgets/elevated_button.dart';
 import 'package:jumma/src/core/config/theme/app_colors.dart';
 import 'package:jumma/src/features/auth/presentation/pages/membership.dart';
 import 'package:jumma/src/features/auth/presentation/pages/signin.dart';
 import 'package:jumma/src/features/auth/presentation/pages/widgets/check_box.dart';
 import 'package:jumma/src/features/auth/presentation/pages/widgets/social_icons.dart';
-import 'package:jumma/src/features/home/presentation/pages/home.dart';
-import '../../../../common/widgets/icon_button.dart';
 import '../../../../core/assets/assets/app_vectors.dart';
+import '../../../../core/common/bottom_navigation_bar/pages/root.dart';
+import '../../../../core/common/widgets/elevated_button.dart';
 import '../../data/models/signup_user.dart';
 import '../viewmodel/signup_cubit.dart';
 
@@ -55,6 +54,13 @@ class _SignUpPageState extends State<SignUpPage> {
               child: BlocConsumer<SignUpCubit, SignUpState>(
                 listener: (context, state) {
                   if (state is SignUpLoading) {
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (context) => const Center(
+                        child: CircularProgressIndicator(color: AppColors.primary,),
+                      ),
+                    );
                   } else if (state is SignUpSuccess) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
@@ -64,7 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => const HomePage(),
+                        builder: (_) => const Root(),
                       ),
                     );
                   } else if (state is SignUpFailure) {
@@ -246,7 +252,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      SignInPage(),
+                                      const SignInPage(),
                                 ),
                               );
                             },

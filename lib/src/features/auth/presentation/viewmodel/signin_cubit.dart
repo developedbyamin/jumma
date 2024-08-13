@@ -10,7 +10,7 @@ part 'signin_state.dart';
 class SignInCubit extends Cubit<SignInState> {
   SignInCubit() : super(SignInInitial());
 
-  Future<void> signUp(SignInUserModel user) async {
+  Future<void> signIn(SignInUserModel user) async {
     emit(SignInLoading());
 
     var result = await sl<SignInUseCase>().call(params: user);

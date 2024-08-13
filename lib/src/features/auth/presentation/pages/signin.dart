@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:jumma/src/common/widgets/elevated_button.dart';
 import 'package:jumma/src/core/config/theme/app_colors.dart';
 import 'package:jumma/src/features/auth/presentation/pages/widgets/social_icons.dart';
 import '../../../../core/assets/assets/app_vectors.dart';
+import '../../../../core/common/bottom_navigation_bar/pages/root.dart';
+import '../../../../core/common/widgets/elevated_button.dart';
 import '../../data/models/signin_user.dart';
 import '../viewmodel/signin_cubit.dart';
-import 'package:jumma/src/features/home/presentation/pages/home.dart';
 
 import 'signup.dart';
 
@@ -45,14 +45,20 @@ class _SignInPageState extends State<SignInPage> {
               child: BlocConsumer<SignInCubit, SignInState>(
                 listener: (context, state) {
                   if (state is SignInLoading) {
-                    // Handle loading state if needed
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (context) => const Center(
+                        child: CircularProgressIndicator(color: AppColors.primary,),
+                      ),
+                    );
                   } else if (state is SignInSuccess) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Sign in successful!')),
+                      const SnackBar(content: Text('Sign in successful!', style: TextStyle(color: Colors.white),),backgroundColor: AppColors.primary, duration: Duration(seconds: 1),),
                     );
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (_) => const HomePage()),
+                      MaterialPageRoute(builder: (_) => const Root()),
                     );
                   } else if (state is SignInFailure) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -81,7 +87,7 @@ class _SignInPageState extends State<SignInPage> {
                               email: _email.text,
                               password: _password.text,
                             );
-                            context.read<SignInCubit>().signUp(user);
+                            context.read<SignInCubit>().signIn(user);
                           }
                         },
                         title: 'Sign In',
