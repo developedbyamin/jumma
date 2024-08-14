@@ -1,23 +1,23 @@
 import '../../domain/entities/signup_user.dart';
 
-class SignUpUserModel extends SignUpUserEntity {
+class SignUpUserModel {
+  final String name;
+  final String email;
+  final String phoneNumber;
+  final String mosque;
+  final String password;
+  final bool acceptSubscribe;
+  final bool acceptMemberShipAgreement;
+
   SignUpUserModel({
-    required String name,
-    required String email,
-    required String phoneNumber,
-    required String mosque,
-    required String password,
-    required bool acceptSubscribe,
-    required bool acceptMemberShipAgreement,
-  }) : super(
-    acceptSubscribe,
-    acceptMemberShipAgreement: acceptMemberShipAgreement,
-    name: name,
-    email: email,
-    phoneNumber: phoneNumber,
-    mosque: mosque,
-    password: password,
-  );
+    required this.name,
+    required this.email,
+    required this.phoneNumber,
+    required this.mosque,
+    required this.password,
+    required this.acceptSubscribe,
+    required this.acceptMemberShipAgreement,
+  });
 
   Map<String, dynamic> toJson() {
     return {
@@ -40,6 +40,20 @@ class SignUpUserModel extends SignUpUserEntity {
       password: json['password'],
       acceptSubscribe: json['acceptSubscribe'],
       acceptMemberShipAgreement: json['acceptMemberShipAgreement'],
+    );
+  }
+}
+
+extension SignUpUserEntityToModel on SignUpUserEntity {
+  SignUpUserModel toModel() {
+    return SignUpUserModel(
+      name: name,
+      email: email,
+      phoneNumber: phoneNumber,
+      mosque: mosque,
+      password: password,
+      acceptSubscribe: acceptSubscribe,
+      acceptMemberShipAgreement: acceptMemberShipAgreement,
     );
   }
 }

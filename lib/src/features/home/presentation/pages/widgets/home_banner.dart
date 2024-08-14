@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/assets/assets/app_images.dart';
-import '../../../../core/common/widgets/elevated_button.dart';
+import '../../../../../core/assets/assets/app_images.dart';
+import '../../../../../core/common/widgets/elevated_button.dart';
 
 class HomeBanner extends StatelessWidget {
   const HomeBanner({super.key});

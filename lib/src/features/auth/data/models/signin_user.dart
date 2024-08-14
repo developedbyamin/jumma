@@ -1,7 +1,10 @@
 import 'package:jumma/src/features/auth/domain/entities/signin_user.dart';
 
-class SignInUserModel extends SignInUserEntity{
-  SignInUserModel({required super.email, required super.password});
+class SignInUserModel{
+  final String email;
+  final String password;
+
+  SignInUserModel({required this.email, required this.password});
 
 
   Map<String, dynamic> toJson() {
@@ -18,5 +21,13 @@ class SignInUserModel extends SignInUserEntity{
     );
   }
 
+}
 
+extension SignInUserEntityToModel on SignInUserEntity {
+  SignInUserModel toModel() {
+    return SignInUserModel(
+      email: email,
+      password: password,
+    );
+  }
 }

@@ -6,7 +6,7 @@ import 'package:jumma/src/features/auth/presentation/pages/widgets/social_icons.
 import '../../../../core/assets/assets/app_vectors.dart';
 import '../../../../core/common/bottom_navigation_bar/pages/root.dart';
 import '../../../../core/common/widgets/elevated_button.dart';
-import '../../data/models/signin_user.dart';
+import '../../domain/entities/signin_user.dart';
 import '../viewmodel/signin_cubit.dart';
 
 import 'signup.dart';
@@ -91,7 +91,7 @@ class _SignInPageState extends State<SignInPage> {
                         width: double.infinity,
                         onPressed: () {
                           if (_formKey.currentState?.validate() ?? false) {
-                            final user = SignInUserModel(
+                            final user = SignInUserEntity(
                               email: _email.text,
                               password: _password.text,
                             );

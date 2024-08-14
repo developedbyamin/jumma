@@ -8,12 +8,12 @@ class SignUpUserEntity {
   final bool acceptMemberShipAgreement;
 
   SignUpUserEntity(
-    this.acceptSubscribe, {
-    required this.acceptMemberShipAgreement,
-    required this.name,
-    required this.email,
-    required this.phoneNumber,
-    required this.mosque,
-    required this.password,
-  });
+      this.acceptSubscribe, {
+        required this.acceptMemberShipAgreement,
+        required this.name,
+        required this.email,
+        required this.phoneNumber,
+        required this.mosque,
+        required this.password,
+      });
 }

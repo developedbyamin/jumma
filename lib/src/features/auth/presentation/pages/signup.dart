@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jumma/src/core/config/theme/app_colors.dart';
+import 'package:jumma/src/features/auth/domain/entities/signup_user.dart';
 import 'package:jumma/src/features/auth/presentation/pages/membership.dart';
 import 'package:jumma/src/features/auth/presentation/pages/signin.dart';
 import 'package:jumma/src/features/auth/presentation/pages/widgets/check_box.dart';
@@ -10,7 +11,6 @@ import 'package:jumma/src/features/auth/presentation/pages/widgets/social_icons.
 import '../../../../core/assets/assets/app_vectors.dart';
 import '../../../../core/common/bottom_navigation_bar/pages/root.dart';
 import '../../../../core/common/widgets/elevated_button.dart';
-import '../../data/models/signup_user.dart';
 import '../viewmodel/signup_cubit.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -192,15 +192,14 @@ class _SignUpPageState extends State<SignUpPage> {
                               return;
                             }
 
-                            final user = SignUpUserModel(
+                            final user = SignUpUserEntity(
+                              _acceptSubscribe,
+                              acceptMemberShipAgreement: _acceptMemberShipAgreement,
                               name: _name.text,
                               email: _email.text,
                               phoneNumber: _phoneNumber.text,
                               mosque: _mosque.text,
                               password: _password.text,
-                              acceptSubscribe: _acceptSubscribe,
-                              acceptMemberShipAgreement:
-                                  _acceptMemberShipAgreement,
                             );
                             context.read<SignUpCubit>().signUp(user);
                           }
