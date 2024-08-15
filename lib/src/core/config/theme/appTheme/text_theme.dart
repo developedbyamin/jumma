@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jumma/src/core/config/theme/app_colors.dart';
 
 class JummaTextTheme {
 
@@ -17,5 +18,7 @@ class JummaTextTheme {
 
     labelLarge: const TextStyle().copyWith(fontSize: 12.0, fontWeight: FontWeight.normal, color: Colors.black),
     labelMedium: const TextStyle().copyWith(fontSize: 12.0, fontWeight: FontWeight.normal, color: Colors.black.withOpacity(0.5)),
+    labelSmall: const TextStyle().copyWith(fontSize: 12.0, fontWeight: FontWeight.w700, color: AppColors.grey, fontFamily: 'DMSans'),
+
   );
 }

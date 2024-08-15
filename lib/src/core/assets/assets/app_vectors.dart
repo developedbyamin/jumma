@@ -15,6 +15,9 @@ class AppVectors{
   static const String profile = '${basePath}profile$format';
   static const String market = '${basePath}market$format';
   static const String notification = '${basePath}notification$format';
+  static const String filter = '${basePath}filter$format';
+  static const String search = '${basePath}search$format';
+
 
 
 }
