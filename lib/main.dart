@@ -6,7 +6,6 @@ import 'package:jumma/src/core/common/bottom_navigation_bar/bloc/bottom_nav_bloc
 import 'package:jumma/src/core/common/bottom_navigation_bar/pages/root.dart';
 import 'package:jumma/src/core/common/splash/presentation/pages/splash.dart';
 import 'package:jumma/src/core/config/theme/appTheme/app_theme.dart';
-import 'package:jumma/src/features/home/presentation/pages/home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.themeJumma,
         title: 'Jumma',
         debugShowCheckedModeBanner: false,
-        home: const Root(),
+        home: const SplashPage(),
       ),
     );
   }
