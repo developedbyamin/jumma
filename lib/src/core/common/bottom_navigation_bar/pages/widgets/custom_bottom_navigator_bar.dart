@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../assets/assets/app_vectors.dart';
-import '../../bloc/bottom_nav_bloc.dart';
+import '../../bloc/bottom_nav_cubit.dart';
 import 'bottom_app_bar_item.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final int selectedIndex;
+
   const CustomBottomNavigationBar({super.key, required this.selectedIndex});
 
   @override
@@ -23,9 +24,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
             selectedIndex: selectedIndex,
             currentIndex: 0,
             onTap: () {
-              context.read<BottomNavBloc>().add(
-                ChangeBottomNavEvent(0),
-              );
+              context.read<BottomNavCubit>().changeIndex(0);
             },
             labelText: 'Home',
           ),
@@ -34,9 +33,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
             selectedIndex: selectedIndex,
             currentIndex: 1,
             onTap: () {
-              context.read<BottomNavBloc>().add(
-                ChangeBottomNavEvent(1),
-              );
+              context.read<BottomNavCubit>().changeIndex(1);
             },
             labelText: 'Mosque',
           ),
@@ -45,9 +42,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
             selectedIndex: selectedIndex,
             currentIndex: 2,
             onTap: () {
-              context.read<BottomNavBloc>().add(
-                ChangeBottomNavEvent(2),
-              );
+              context.read<BottomNavCubit>().changeIndex(2);
             },
             labelText: 'Azan time',
           ),
@@ -56,9 +51,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
             selectedIndex: selectedIndex,
             currentIndex: 3,
             onTap: () {
-              context.read<BottomNavBloc>().add(
-                ChangeBottomNavEvent(3),
-              );
+              context.read<BottomNavCubit>().changeIndex(3);
             },
             labelText: 'Surahs',
           ),
@@ -67,20 +60,18 @@ class CustomBottomNavigationBar extends StatelessWidget {
             selectedIndex: selectedIndex,
             currentIndex: 4,
             onTap: () {
-              context.read<BottomNavBloc>().add(
-                ChangeBottomNavEvent(4),
-              );
-            }, labelText: 'Market',
+              context.read<BottomNavCubit>().changeIndex(4);
+            },
+            labelText: 'Market',
           ),
           BottomAppBarItem(
             vectorPath: AppVectors.profile,
             selectedIndex: selectedIndex,
             currentIndex: 5,
             onTap: () {
-              context.read<BottomNavBloc>().add(
-                ChangeBottomNavEvent(5),
-              );
-            }, labelText: 'Profile',
+              context.read<BottomNavCubit>().changeIndex(5);
+            },
+            labelText: 'Profile',
           ),
         ],
       ),

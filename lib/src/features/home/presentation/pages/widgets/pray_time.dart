@@ -1,53 +1,11 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jumma/src/core/assets/assets/app_vectors.dart';
+import 'package:jumma/src/core/config/theme/app_colors.dart';
+import 'package:jumma/src/features/home/presentation/pages/widgets/time_remaining.dart';
 import '../../../domain/entities/pray_time.dart';
 import '../../viewmodel/pray_time_cubit.dart';
-
-class TimeRemainingWidget extends StatefulWidget {
-    final DateTime nextPrayerTime;
-
-  const TimeRemainingWidget({super.key, required this.nextPrayerTime});
-
-  @override
-  State<TimeRemainingWidget> createState() => _TimeRemainingWidgetState();
-}
-
-class _TimeRemainingWidgetState extends State<TimeRemainingWidget> {
-  late Timer _timer;
-  late DateTime _now;
-
-  @override
-  void initState() {
-    super.initState();
-    _now = DateTime.now();
-    _startTimer();
-  }
-
-  void _startTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        _now = DateTime.now();
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      '${PrayerTimeCalculator.calculateTimeRemaining(widget.nextPrayerTime, _now)} left',
-      style: const TextStyle(fontSize: 12, color: Color(0xFFA9A9A9), fontWeight: FontWeight.w400),
-    );
-  }
-}
 
 class PrayTimeView extends StatelessWidget {
   const PrayTimeView({super.key});
@@ -57,38 +15,85 @@ class PrayTimeView extends StatelessWidget {
     return BlocBuilder<PrayTimeCubit, PrayTimeState>(
       builder: (context, state) {
         if (state is PrayTimeLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return SizedBox(
+            height: MediaQuery.of(context).size.height * 0.36,
+            child: const Center(
+              child: CircularProgressIndicator(color: AppColors.primary),
+            ),
+          );
         } else if (state is PrayTimeSuccess) {
-          final prayTimes = state.prayTimes;
-          final nextPrayerTime = state.nextPrayerTime;
+          List<Map<String, dynamic>> prayTimesList = [
+            {'title': 'Fajr', 'time': state.prayTimes.fajr},
+            {'title': 'Dhuhr', 'time': state.prayTimes.dhuhr},
+            {'title': 'Asr', 'time': state.prayTimes.asr},
+            {'title': 'Maghrib', 'time': state.prayTimes.maghrib},
+            {'title': 'Isha', 'time': state.prayTimes.isha},
+          ];
 
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+          return SizedBox(
+            height: MediaQuery.of(context).size.height * 0.36,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        'Next prayer',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400,color: Colors.black),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Next prayer',
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black),
+                          ),
+                          Text(
+                            PrayerTimeCalculator.dataTimeToString(
+                                state.nextPrayerTime),
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 36,
+                                fontWeight: FontWeight.w700),
+                          ),
+                          TimeRemainingWidget(
+                              nextPrayerTime: state.nextPrayerTime),
+                        ],
                       ),
-                      Text(PrayerTimeCalculator.dataTimeToString(nextPrayerTime),style: const TextStyle(color: Colors.black, fontSize: 36, fontWeight: FontWeight.w700),),
-                      TimeRemainingWidget(nextPrayerTime: nextPrayerTime),
+                      SvgPicture.asset(
+                        AppVectors.logo,
+                        height: MediaQuery.of(context).size.height * 0.12,
+                      ),
                     ],
                   ),
-                  SvgPicture.asset(AppVectors.logo, height: MediaQuery.of(context).size.height * 0.12,),
-                ],
-              ),
-              const SizedBox(height: 16),
-              PrayerTimeCalculator.buildPrayTimeRow('Fajr', prayTimes.fajr, PrayerTimeCalculator.isNextPrayerTime(prayTimes.fajr, nextPrayerTime)),
-              PrayerTimeCalculator.buildPrayTimeRow('Dhuhr', prayTimes.dhuhr, PrayerTimeCalculator.isNextPrayerTime(prayTimes.dhuhr, nextPrayerTime)),
-              PrayerTimeCalculator.buildPrayTimeRow('Asr', prayTimes.asr, PrayerTimeCalculator.isNextPrayerTime(prayTimes.asr, nextPrayerTime)),
-              PrayerTimeCalculator.buildPrayTimeRow('Maghrib', prayTimes.maghrib, PrayerTimeCalculator.isNextPrayerTime(prayTimes.maghrib, nextPrayerTime)),
-              PrayerTimeCalculator.buildPrayTimeRow('Isha', prayTimes.isha, PrayerTimeCalculator.isNextPrayerTime(prayTimes.isha, nextPrayerTime)),
-            ],
+                ),
+                const SizedBox(height: 16),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  child: ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: prayTimesList.length,
+                    itemBuilder: (context, index) {
+                      final item = prayTimesList[index];
+                      final isNext = PrayerTimeCalculator.isNextPrayerTime(
+                        item['time'],
+                        state.nextPrayerTime,
+                      );
+                      return Column(
+                        children: [
+                          _buildPrayTimeRow(
+                              item['title'], item['time'], isNext),
+                          const Divider(),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: 16),
+              ],
+            ),
           );
         } else if (state is PrayTimeFailure) {
           return const Center(child: Text('Failed to load prayer times'));
@@ -99,7 +104,29 @@ class PrayTimeView extends StatelessWidget {
     );
   }
 
-
-
+  Widget _buildPrayTimeRow(String title, String time, bool isNext) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                  color: isNext ? Colors.green : Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16),
+            ),
+            Text(
+              time,
+              style: TextStyle(
+                  color: isNext ? Colors.green : Colors.black,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
 }
-

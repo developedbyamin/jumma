@@ -17,6 +17,7 @@ class PrayTimeEntity {
 }
 
 class PrayerTimeCalculator {
+
   static DateTime parsePrayerTime(String time) {
     final now = DateTime.now();
     return DateTime(now.year, now.month, now.day,
@@ -77,7 +78,6 @@ class PrayerTimeCalculator {
 
     return '$formattedHours:$formattedMinutes:$formattedSeconds';
   }
-
 
   static String dataTimeToString(DateTime dateTime) {
     final hours = dateTime.hour.toString().padLeft(2, '0');

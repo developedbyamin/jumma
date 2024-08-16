@@ -1,7 +1,10 @@
-part of 'bottom_nav_bloc.dart';
+part of 'bottom_nav_cubit.dart';
 
-class BottomNavState {
+class BottomNavState extends Equatable {
   final int selectedIndex;
 
-  BottomNavState({required this.selectedIndex});
+  const BottomNavState({required this.selectedIndex});
+
+  @override
+  List<Object> get props => [selectedIndex];
 }
