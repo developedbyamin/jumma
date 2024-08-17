@@ -18,16 +18,12 @@ class HomeBanner extends StatelessWidget {
             width: double.infinity,
             height: MediaQuery.of(context).size.height * 0.16,
             decoration: const BoxDecoration(
+              color: Color(0xFF95C8FF),
               image: DecorationImage(
-                fit: BoxFit.fill,
+                alignment: Alignment.centerRight,
                 image: AssetImage(AppImages.banner),
               ),
             ),
-          ),
-          Container(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.16,
-            color: Colors.black.withOpacity(0.3),
           ),
           Padding(
             padding: const EdgeInsets.all(16),
@@ -41,11 +37,11 @@ class HomeBanner extends StatelessWidget {
                 ),
                 const SizedBox(height: 8,),
                 Text(
-                  'Your donation helps maintain and improve our community mosques. Every contribution counts. Thank you for your generosity.',
+                  'Your donation helps maintain and\nimprove our community mosques.\nEvery contribution counts.\nThank you for your generosity.',
                   style: textTheme.headlineLarge!.copyWith(color: Colors.white, fontSize: 10),
                 ),
-                const SizedBox(height: 16,),
-                JummaElevatedButton(onPressed: (){}, title: 'İanə et', width: size.height * 0.115, height: size.height * 0.026,),
+                const SizedBox(height: 8,),
+                JummaElevatedButton(onPressed: (){}, title: 'İanə et', width: size.width * 0.45, height: size.height * 0.03,),
               ],
             ),
           ),

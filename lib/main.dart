@@ -12,6 +12,16 @@ Future<void> main() async {
     statusBarColor: Colors.transparent,
   ));
   await initializeDependencies();
+  // Workmanager().initialize(callbackDispatcher);
+  // Workmanager().registerPeriodicTask(
+  //   '1',
+  //   'clearCacheTask',
+  //   frequency: const Duration(days: 1),
+  //   initialDelay: const Duration(seconds: 10),
+  //   constraints: Constraints(
+  //     networkType: NetworkType.not_required,
+  //   ),
+  // );
   runApp(const MyApp());
 }
 
@@ -35,4 +45,12 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// void callbackDispatcher() {
+//   Workmanager().executeTask((task, inputData) {
+//     clearCacheTask();
+//     return Future.value(true);
+//   });
+// }
+
 

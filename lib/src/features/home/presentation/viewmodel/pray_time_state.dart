@@ -7,9 +7,8 @@ class PrayTimeLoading extends PrayTimeState{}
 
 class PrayTimeSuccess extends PrayTimeState{
   final PrayTimeEntity prayTimes;
-  final DateTime nextPrayerTime;
-
-  PrayTimeSuccess({required this.nextPrayerTime,required this.prayTimes});
+  final DateTime? nextPrayerTime;
+  PrayTimeSuccess({required this.prayTimes, required this.nextPrayerTime});
 
 }
 

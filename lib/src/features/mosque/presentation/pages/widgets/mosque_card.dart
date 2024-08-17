@@ -3,11 +3,10 @@ import '../../../../../core/config/theme/app_colors.dart';
 
 class MosqueCard extends StatelessWidget {
   const MosqueCard(
-      {Key? key,
+      {super.key,
       required this.image,
       required this.mosque,
-      required this.location, required this.onTap})
-      : super(key: key);
+      required this.location, required this.onTap});
 
   final String image;
   final String mosque;

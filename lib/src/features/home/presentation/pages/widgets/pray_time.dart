@@ -22,6 +22,7 @@ class PrayTimeView extends StatelessWidget {
             ),
           );
         } else if (state is PrayTimeSuccess) {
+
           List<Map<String, dynamic>> prayTimesList = [
             {'title': 'Fajr', 'time': state.prayTimes.fajr},
             {'title': 'Dhuhr', 'time': state.prayTimes.dhuhr},
@@ -29,6 +30,19 @@ class PrayTimeView extends StatelessWidget {
             {'title': 'Maghrib', 'time': state.prayTimes.maghrib},
             {'title': 'Isha', 'time': state.prayTimes.isha},
           ];
+
+          String nextPrayerName = '';
+
+          for(var pray in prayTimesList){
+            final isNext = PrayerTimeCalculator.isNextPrayerTime(
+              pray['time'],
+              state.nextPrayerTime,
+            );
+            if(isNext){
+              nextPrayerName = pray['title'];
+              break;
+            }
+          }
 
           return SizedBox(
             height: MediaQuery.of(context).size.height * 0.36,
@@ -51,14 +65,17 @@ class PrayTimeView extends StatelessWidget {
                           ),
                           Text(
                             PrayerTimeCalculator.dataTimeToString(
-                                state.nextPrayerTime),
+                                state.nextPrayerTime!),
                             style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 36,
                                 fontWeight: FontWeight.w700),
                           ),
+                          // Pass the nextPrayerName to the TimeRemainingWidget
                           TimeRemainingWidget(
-                              nextPrayerTime: state.nextPrayerTime),
+                            nextPrayerTime: state.nextPrayerTime!,
+                            nextPrayerName: nextPrayerName,
+                          ),
                         ],
                       ),
                       SvgPicture.asset(
@@ -84,7 +101,10 @@ class PrayTimeView extends StatelessWidget {
                       return Column(
                         children: [
                           _buildPrayTimeRow(
-                              item['title'], item['time'], isNext),
+                            item['title'],
+                            item['time'],
+                            isNext,
+                          ),
                           const Divider(),
                         ],
                       );

@@ -4,8 +4,13 @@ import '../../../domain/entities/pray_time.dart';
 
 class TimeRemainingWidget extends StatefulWidget {
   final DateTime nextPrayerTime;
+  final String nextPrayerName;
 
-  const TimeRemainingWidget({super.key, required this.nextPrayerTime});
+  const TimeRemainingWidget({
+    super.key,
+    required this.nextPrayerTime,
+    required this.nextPrayerName,
+  });
 
   @override
   State<TimeRemainingWidget> createState() => _TimeRemainingWidgetState();
@@ -39,22 +44,17 @@ class _TimeRemainingWidgetState extends State<TimeRemainingWidget> {
   @override
   Widget build(BuildContext context) {
     final Duration timeRemaining = widget.nextPrayerTime.difference(_now);
-
-    // Check if the remaining time is zero or less
     if (timeRemaining.isNegative || timeRemaining.inSeconds == 0) {
       return const Text(
-        'It is prayer time',
+        'It is prayer time!',
         style: TextStyle(
             fontSize: 12, color: Color(0xFFA9A9A9), fontWeight: FontWeight.w400),
       );
     }
-
-    // Show the remaining time
     final String remainingTimeText = PrayerTimeCalculator.calculateTimeRemaining(
         widget.nextPrayerTime, _now);
-
     return Text(
-      '$remainingTimeText left',
+      '$remainingTimeText left until ${widget.nextPrayerName}',
       style: const TextStyle(
           fontSize: 12, color: Color(0xFFA9A9A9), fontWeight: FontWeight.w400),
     );
