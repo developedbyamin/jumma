@@ -46,7 +46,7 @@ class _TimeRemainingWidgetState extends State<TimeRemainingWidget> {
     final Duration timeRemaining = widget.nextPrayerTime.difference(_now);
     if (timeRemaining.isNegative || timeRemaining.inSeconds == 0) {
       return const Text(
-        'It is prayer time!',
+        'Namaz vaxtıdır',
         style: TextStyle(
             fontSize: 12, color: Color(0xFFA9A9A9), fontWeight: FontWeight.w400),
       );
@@ -54,7 +54,7 @@ class _TimeRemainingWidgetState extends State<TimeRemainingWidget> {
     final String remainingTimeText = PrayerTimeCalculator.calculateTimeRemaining(
         widget.nextPrayerTime, _now);
     return Text(
-      '$remainingTimeText left until ${widget.nextPrayerName}',
+      '${widget.nextPrayerName} namazına $remainingTimeText qaldı',
       style: const TextStyle(
           fontSize: 12, color: Color(0xFFA9A9A9), fontWeight: FontWeight.w400),
     );

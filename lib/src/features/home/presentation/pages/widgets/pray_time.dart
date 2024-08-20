@@ -24,11 +24,11 @@ class PrayTimeView extends StatelessWidget {
         } else if (state is PrayTimeSuccess) {
 
           List<Map<String, dynamic>> prayTimesList = [
-            {'title': 'Fajr', 'time': state.prayTimes.fajr},
-            {'title': 'Dhuhr', 'time': state.prayTimes.dhuhr},
-            {'title': 'Asr', 'time': state.prayTimes.asr},
-            {'title': 'Maghrib', 'time': state.prayTimes.maghrib},
-            {'title': 'Isha', 'time': state.prayTimes.isha},
+            {'title': 'Sübh', 'time': state.prayTimes.fajr},
+            {'title': 'Zöhr', 'time': state.prayTimes.dhuhr},
+            {'title': 'Əsr', 'time': state.prayTimes.asr},
+            {'title': 'Mağrib', 'time': state.prayTimes.maghrib},
+            {'title': 'İşa', 'time': state.prayTimes.isha},
           ];
 
           String nextPrayerName = '';
@@ -57,7 +57,7 @@ class PrayTimeView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            'Next prayer',
+                            'Növbəti namaz',
                             style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w400,

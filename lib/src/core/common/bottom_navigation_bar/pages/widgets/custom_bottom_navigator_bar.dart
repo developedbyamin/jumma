@@ -14,7 +14,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
     return BottomAppBar(
       shadowColor: Colors.black,
       elevation: 30,
-      height: MediaQuery.of(context).size.height * 0.12,
+      height: MediaQuery.of(context).size.height * 0.11,
       color: Colors.white,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,15 +36,6 @@ class CustomBottomNavigationBar extends StatelessWidget {
               context.read<BottomNavCubit>().changeIndex(1);
             },
             labelText: 'Mosque',
-          ),
-          BottomAppBarItem(
-            vectorPath: AppVectors.time,
-            selectedIndex: selectedIndex,
-            currentIndex: 2,
-            onTap: () {
-              context.read<BottomNavCubit>().changeIndex(2);
-            },
-            labelText: 'Azan time',
           ),
           BottomAppBarItem(
             vectorPath: AppVectors.surahs,

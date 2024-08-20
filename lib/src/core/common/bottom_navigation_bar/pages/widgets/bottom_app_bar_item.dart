@@ -25,7 +25,7 @@ class BottomAppBarItem extends StatelessWidget {
           ),
           onPressed: onTap,
         ),
-        Text(labelText, style: TextStyle(color: selectedIndex == currentIndex ? Colors.black : const Color(0xFF8A8A8A), fontWeight: selectedIndex == currentIndex ? FontWeight.bold : FontWeight.normal,),),
+        Text(labelText, style: TextStyle(color: selectedIndex == currentIndex ? Colors.black : const Color(0xFF8A8A8A), fontWeight: selectedIndex == currentIndex ? FontWeight.normal : FontWeight.normal,),),
       ],
     );
   }

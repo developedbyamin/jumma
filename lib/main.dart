@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jumma/service_locator.dart';
 import 'package:jumma/src/core/common/bottom_navigation_bar/bloc/bottom_nav_cubit.dart';
+import 'package:jumma/src/core/common/bottom_navigation_bar/pages/root.dart';
 import 'package:jumma/src/core/common/splash/presentation/pages/splash.dart';
 import 'package:jumma/src/core/config/theme/appTheme/app_theme.dart';
 
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.themeJumma,
         title: 'Jumma',
         debugShowCheckedModeBanner: false,
-        home: const SplashPage(),
+        home: Root(),
       ),
     );
   }

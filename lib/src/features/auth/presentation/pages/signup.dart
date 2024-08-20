@@ -64,7 +64,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   } else if (state is SignUpSuccess) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text('Sign up successful!'),
+                        backgroundColor: AppColors.primary,
+                        content: Text('Qeydiyyat uğurludur!', style: TextStyle(color: Colors.white),),
                       ),
                     );
                     Navigator.pushReplacement(
@@ -76,7 +77,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   } else if (state is SignUpFailure) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Sign up failed: ${state.error}'),
+                        content: Text('Qeydiyyat uğursuzdur: ${state.error}'),
                       ),
                     );
                   }
@@ -126,7 +127,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 },
                               ),
                               Text(
-                                'I want to subscribe to the page and receive notifications.',
+                                'Abunə olmaq və bildirişlər almaq istəyirəm.',
                                 style: textTheme.bodySmall,
                               ),
                             ],
@@ -147,9 +148,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                 text: TextSpan(
                                   style: textTheme.bodySmall,
                                   children: [
-                                    const TextSpan(text: 'I accept the '),
+                                    const TextSpan(text: 'Üzvlük  '),
                                     TextSpan(
-                                      text: 'membership agreement',
+                                      text: 'müqaviləsini ',
                                       style: textTheme.bodySmall?.copyWith(
                                         color: AppColors
                                             .primary, // Adjust color if needed
@@ -166,7 +167,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                           );
                                         },
                                     ),
-                                    const TextSpan(text: '.'),
+                                    const TextSpan(text: 'qəbul edirəm.'),
                                   ],
                                 ),
                               ),
@@ -183,7 +184,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text(
-                                    'You must accept the membership agreement to proceed.',
+                                      'Davam etmək üçün üzvlük müqaviləsini qəbul etməlisiniz.',
                                     style: TextStyle(color: Colors.black),
                                   ),
                                   backgroundColor: Colors.yellow,
@@ -204,7 +205,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             context.read<SignUpCubit>().signUp(user);
                           }
                         },
-                        title: 'Sign Up',
+                        title: 'Qeydiyyatdan keçin',
                       ),
                       const SizedBox(height: 32),
                       Row(
@@ -217,7 +218,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                           ),
                           Text(
-                            'or sign up with',
+                            'və ya ilə qeydiyyatdan keçin',
                             style: textTheme.bodySmall,
                           ),
                           const Expanded(
@@ -239,7 +240,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            'Already have an account?',
+                            'Hesabınız var?',
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
@@ -256,7 +257,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               );
                             },
                             child: const Text(
-                              'Log in',
+                              'Daxil ol',
                               style: TextStyle(color: AppColors.primary),
                             ),
                           ),
@@ -277,10 +278,10 @@ class _SignUpPageState extends State<SignUpPage> {
     return TextFormField(
       cursorColor: AppColors.primary,
       controller: _name,
-      decoration: const InputDecoration(labelText: 'Name*'),
+      decoration: const InputDecoration(labelText: 'Adınız*'),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter your name';
+          return 'Xahiş olunur adınızı daxil edin!';
         }
         return null;
       },
@@ -291,12 +292,12 @@ class _SignUpPageState extends State<SignUpPage> {
     return TextFormField(
       cursorColor: AppColors.primary,
       controller: _email,
-      decoration: const InputDecoration(labelText: 'Email*'),
+      decoration: const InputDecoration(labelText: 'Elektron poçt*'),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter your email';
+          return 'Elektron poçtunuzu daxil edin';
         } else if (!value.contains('@')) {
-          return 'Please enter a valid email';
+          return 'Düzgün daxil edin';
         }
         return null;
       },
@@ -307,10 +308,10 @@ class _SignUpPageState extends State<SignUpPage> {
     return TextFormField(
       cursorColor: AppColors.primary,
       controller: _phoneNumber,
-      decoration: const InputDecoration(labelText: 'Phone Number*'),
+      decoration: const InputDecoration(labelText: 'Telefon nömrəsi*'),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter your phone number';
+          return 'Telefon nömrənizi daxil edin';
         }
         return null;
       },
@@ -321,10 +322,10 @@ class _SignUpPageState extends State<SignUpPage> {
     return TextFormField(
       cursorColor: AppColors.primary,
       controller: _mosque,
-      decoration: const InputDecoration(labelText: 'Mosque*'),
+      decoration: const InputDecoration(labelText: 'Məscid*'),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter your mosque';
+          return 'Məscid adı daxil edin';
         }
         return null;
       },
@@ -335,13 +336,13 @@ class _SignUpPageState extends State<SignUpPage> {
     return TextFormField(
       cursorColor: AppColors.primary,
       controller: _password,
-      decoration: const InputDecoration(labelText: 'Password*'),
+      decoration: const InputDecoration(labelText: 'Parol*'),
       obscureText: true,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter your password';
+          return 'Parol daxil edin';
         } else if (value.length < 6) {
-          return 'Password must be at least 6 characters long';
+          return 'Parol ən azı 6 simvol uzunluğunda olmalıdır';
         }
         return null;
       },
@@ -352,13 +353,13 @@ class _SignUpPageState extends State<SignUpPage> {
     return TextFormField(
       cursorColor: AppColors.primary,
       controller: _confirmPassword,
-      decoration: const InputDecoration(labelText: 'Confirm Password*'),
+      decoration: const InputDecoration(labelText: 'Parolu təsdiqləyin*'),
       obscureText: true,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please confirm your password';
+          return 'Zəhmət olmasa parolunuzu təsdiqləyin';
         } else if (value != _password.text) {
-          return 'Passwords do not match';
+          return 'Parollar uyğun gəlmir';
         }
         return null;
       },

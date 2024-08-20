@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jumma/src/core/common/bottom_navigation_bar/pages/widgets/custom_bottom_navigator_bar.dart';
-import 'package:jumma/src/features/azan_time/presentation/pages/azan_time.dart';
 import 'package:jumma/src/features/home/presentation/pages/home.dart';
 import 'package:jumma/src/features/market/presentation/pages/market.dart';
 import 'package:jumma/src/features/mosque/presentation/pages/mosque.dart';
@@ -34,7 +33,6 @@ class Root extends StatelessWidget {
           children: const [
             Home(),
             Mosque(),
-            AzanTime(),
             Surahs(),
             Market(),
             Profile(),

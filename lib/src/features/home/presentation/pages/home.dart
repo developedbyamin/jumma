@@ -32,8 +32,14 @@ class Home extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => const NotificationPage(),
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) => const NotificationPage(),
+                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                        opacity: animation,
+                        child: child,
+                      );
+                    },
                   ),
                 );
               },
