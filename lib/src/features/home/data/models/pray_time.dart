@@ -1,12 +1,18 @@
 import 'package:jumma/src/features/home/domain/entities/pray_time.dart';
 
-class PrayTimeModel extends PrayTimeEntity {
+class PrayTimeModel {
+  final String fajr;
+  final String dhuhr;
+  final String asr;
+  final String maghrib;
+  final String isha;
+
   PrayTimeModel({
-    required super.fajr,
-    required super.dhuhr,
-    required super.asr,
-    required super.maghrib,
-    required super.isha,
+    required this.fajr,
+    required this.dhuhr,
+    required this.asr,
+    required this.maghrib,
+    required this.isha,
   });
 
   Map<String, dynamic> toJson() {
@@ -20,12 +26,13 @@ class PrayTimeModel extends PrayTimeEntity {
   }
 
   factory PrayTimeModel.fromJson(Map<String, dynamic> json) {
+    final prayers = json['prayers'] as List<dynamic>;
     return PrayTimeModel(
-      fajr: json['Fajr'],
-      dhuhr: json['Dhuhr'],
-      asr: json['Asr'],
-      maghrib: json['Maghrib'],
-      isha: json['Isha'],
+      fajr: prayers[0] ?? '',
+      dhuhr: prayers[2] ?? '',
+      asr: prayers[3] ?? '',
+      maghrib: prayers[4] ?? '',
+      isha: prayers[5] ?? '',
     );
   }
 }

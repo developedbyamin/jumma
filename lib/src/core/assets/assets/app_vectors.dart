@@ -17,6 +17,7 @@ class AppVectors{
   static const String notification = '${basePath}notification$format';
   static const String filter = '${basePath}filter$format';
   static const String search = '${basePath}search$format';
+  static const String box = '${basePath}box$format';
 
 
 

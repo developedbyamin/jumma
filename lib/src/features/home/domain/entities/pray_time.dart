@@ -17,6 +17,7 @@ class PrayTimeEntity {
 }
 
 class PrayerTimeCalculator {
+
   static DateTime parsePrayerTime(String time) {
     final now = DateTime.now();
     return DateTime(now.year, now.month, now.day,
@@ -24,7 +25,7 @@ class PrayerTimeCalculator {
         int.parse(time.split(':')[1]));
   }
 
-  static DateTime? getNextPrayerTime(DateTime currentTime, PrayTimeEntity prayTimes) {
+  static DateTime getNextPrayerTime(DateTime currentTime, PrayTimeEntity prayTimes) {
     List<DateTime> prayerTimes = [
       parsePrayerTime(prayTimes.fajr),
       parsePrayerTime(prayTimes.dhuhr),
@@ -33,15 +34,19 @@ class PrayerTimeCalculator {
       parsePrayerTime(prayTimes.isha),
     ];
 
-    return prayerTimes
-        .where((time) => time.isAfter(currentTime))
-        .reduce((a, b) => a.isBefore(b) ? a : b);
+    // Find the next prayer time after the current time
+    List<DateTime> futurePrayerTimes =
+    prayerTimes.where((time) => time.isAfter(currentTime)).toList();
+
+    // If there are future prayer times, return the closest one
+    if (futurePrayerTimes.isNotEmpty) {
+      return futurePrayerTimes.reduce((a, b) => a.isBefore(b) ? a : b);
+    }
+
+    // If no future prayer times are found, return Isha
+    return parsePrayerTime(prayTimes.isha);
   }
 
-  static bool isNextPrayerTime(String prayerTime, DateTime? nextPrayerTime) {
-    final prayerDateTime = PrayerTimeCalculator.parsePrayerTime(prayerTime);
-    return nextPrayerTime != null && prayerDateTime == nextPrayerTime;
-  }
 
   static Widget buildPrayTimeRow(String title, String time, bool isNext) {
     return Column(
@@ -78,11 +83,15 @@ class PrayerTimeCalculator {
     return '$formattedHours:$formattedMinutes:$formattedSeconds';
   }
 
-
   static String dataTimeToString(DateTime dateTime) {
     final hours = dateTime.hour.toString().padLeft(2, '0');
     final minutes = dateTime.minute.toString().padLeft(2, '0');
     return '$hours:$minutes';
+  }
+
+  static bool isNextPrayerTime(String prayerTime, DateTime? nextPrayerTime) {
+    final prayerDateTime = PrayerTimeCalculator.parsePrayerTime(prayerTime);
+    return nextPrayerTime != null && prayerDateTime == nextPrayerTime;
   }
 
 }
