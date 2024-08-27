@@ -38,10 +38,10 @@ class Profile extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height * 0.08,
                 width: double.infinity,
 

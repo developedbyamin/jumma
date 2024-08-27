@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../core/assets/assets/app_vectors.dart';
 
 class FilterButton extends StatelessWidget {
-  const FilterButton({Key? key, required this.onTap}) : super(key: key);
+  const FilterButton({super.key, required this.onTap});
 
   final VoidCallback onTap;
 
