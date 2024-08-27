@@ -12,7 +12,6 @@ class PrayerTimeRepositoryImpl extends PrayerTimeRepository{
 
   @override
   Future<Either> getTodayPrayerTimes(List<PrayerTimeEntity> prayerTimeEntity, int today) {
-    // TODO: implement getTodayPrayerTimes
     throw UnimplementedError();
   }
 }
