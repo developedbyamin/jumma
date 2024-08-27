@@ -39,7 +39,7 @@ class _SignInPageState extends State<SignInPage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Sign In',
+            'Daxil ol',
             style: textTheme.headlineMedium,
           ),
           centerTitle: true,
@@ -61,7 +61,7 @@ class _SignInPageState extends State<SignInPage> {
                     );
                   } else if (state is SignInSuccess) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Sign in successful!', style: TextStyle(color: Colors.white),),backgroundColor: AppColors.primary, duration: Duration(seconds: 1),),
+                      const SnackBar(content: Text('Giriş edildi!', style: TextStyle(color: Colors.white),),backgroundColor: AppColors.primary, duration: Duration(seconds: 1),),
                     );
                     Navigator.pushAndRemoveUntil(
                       context,
@@ -70,7 +70,7 @@ class _SignInPageState extends State<SignInPage> {
                     );
                   } else if (state is SignInFailure) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Sign in failed: ${state.error}')),
+                      SnackBar(content: Text('Giriş uğursuz! ${state.error}')),
                     );
                   }
                 },
@@ -98,7 +98,7 @@ class _SignInPageState extends State<SignInPage> {
                             context.read<SignInCubit>().signIn(user);
                           }
                         },
-                        title: 'Sign In',
+                        title: 'Daxil ol',
                       ),
                       const SizedBox(height: 32),
                       Row(
@@ -111,7 +111,7 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                           ),
                           Text(
-                            'or sign in with',
+                            'və ya ilə daxil olun',
                             style: textTheme.bodySmall,
                           ),
                           const Expanded(
@@ -133,7 +133,7 @@ class _SignInPageState extends State<SignInPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            "Don't have a account?",
+                            "Hesabınız yoxdur?",
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
@@ -150,7 +150,7 @@ class _SignInPageState extends State<SignInPage> {
                               );
                             },
                             child: const Text(
-                              'Sign up',
+                              'Qeydiyyatdan keç',
                               style: TextStyle(color: AppColors.primary),
                             ),
                           ),
@@ -171,7 +171,7 @@ class _SignInPageState extends State<SignInPage> {
     return TextFormField(
       cursorColor: AppColors.primary,
       controller: _email,
-      decoration: const InputDecoration(labelText: 'Email*'),
+      decoration: const InputDecoration(labelText: 'Elektron poçt*'),
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please enter your email';
@@ -187,7 +187,7 @@ class _SignInPageState extends State<SignInPage> {
     return TextFormField(
       cursorColor: AppColors.primary,
       controller: _password,
-      decoration: const InputDecoration(labelText: 'Password*'),
+      decoration: const InputDecoration(labelText: 'Parol*'),
       obscureText: true,
       validator: (value) {
         if (value == null || value.isEmpty) {

@@ -43,14 +43,14 @@ class SignUpSignInPage extends StatelessWidget {
                 height: 40,
               ),
               Text(
-                'Hello!',
+                'Salam!',
                 style: textTheme.headlineLarge,
               ),
               const SizedBox(
                 height: 16,
               ),
               Text(
-                'Stay connected—prayer times, reminders, and halal products in one place.',
+                'Namaz vaxtları, xatırlatmalar və halal məhsullar bir yerdə.',
                 style: textTheme.titleLarge,
               ),
               const SizedBox(
@@ -68,7 +68,7 @@ class SignUpSignInPage extends StatelessWidget {
                         ),
                       );
                     },
-                    title: 'Log in',
+                    title: 'Daxil ol',
                   ),
                   JummaOutlinedButton(
                     onPressed: () {
@@ -79,7 +79,7 @@ class SignUpSignInPage extends StatelessWidget {
                         ),
                       );
                     },
-                    title: 'Sign up',
+                    title: 'Qeydiyyatdan keç',
                   )
                 ],
               ),
@@ -96,7 +96,7 @@ class SignUpSignInPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'or sign up with',
+                    'və ya ilə qeydiyyatdan keçin',
                     style: textTheme.bodySmall,
                   ),
                   const Expanded(

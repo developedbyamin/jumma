@@ -4,7 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jumma/service_locator.dart';
 import 'package:jumma/src/core/common/bottom_navigation_bar/bloc/bottom_nav_bloc.dart';
 import 'package:jumma/src/core/common/splash/presentation/pages/splash.dart';
+import 'package:jumma/src/core/common/bottom_navigation_bar/bloc/bottom_nav_cubit.dart';
+import 'package:jumma/src/core/common/bottom_navigation_bar/pages/root.dart';
 import 'package:jumma/src/core/config/theme/appTheme/app_theme.dart';
+import 'package:jumma/src/features/home/presentation/viewmodel/bloc/city_prayer_time_bloc.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,6 +16,16 @@ Future<void> main() async {
     statusBarColor: Colors.transparent,
   ));
   await initializeDependencies();
+  // Workmanager().initialize(callbackDispatcher);
+  // Workmanager().registerPeriodicTask(
+  //   '1',
+  //   'clearCacheTask',
+  //   frequency: const Duration(days: 1),
+  //   initialDelay: const Duration(seconds: 10),
+  //   constraints: Constraints(
+  //     networkType: NetworkType.not_required,
+  //   ),
+  // );
   runApp(const MyApp());
 }
 
@@ -22,17 +36,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<BottomNavBloc>(
-          create: (context) => BottomNavBloc(),
+        BlocProvider<BottomNavCubit>(
+          create: (context) => BottomNavCubit(),
+        ),
+        BlocProvider<CityPrayerTimeBloc>(
+          create: (context) => CityPrayerTimeBloc(),
         ),
       ],
       child: MaterialApp(
         theme: AppTheme.themeJumma,
         title: 'Jumma',
         debugShowCheckedModeBanner: false,
-        home: const SplashPage(),
+        home: const Root(),
       ),
     );
   }
 }
+
+// void callbackDispatcher() {
+//   Workmanager().executeTask((task, inputData) {
+//     clearCacheTask();
+//     return Future.value(true);
+//   });
+// }
+
 
