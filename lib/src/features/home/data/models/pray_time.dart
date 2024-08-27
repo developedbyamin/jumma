@@ -1,50 +1,63 @@
-import 'package:jumma/src/features/home/domain/entities/pray_time.dart';
+import '../../domain/entities/pray_time.dart';
 
-class PrayTimeModel {
-  final String fajr;
-  final String dhuhr;
-  final String asr;
-  final String maghrib;
-  final String isha;
+class PrayerTimeModel {
+  final String tarix;
+  final String subh;
+  final String gunes;
+  final String gunorta;
+  final String ikindi;
+  final String axsam;
+  final String yatsi;
 
-  PrayTimeModel({
-    required this.fajr,
-    required this.dhuhr,
-    required this.asr,
-    required this.maghrib,
-    required this.isha,
+  PrayerTimeModel({
+    required this.tarix,
+    required this.subh,
+    required this.gunes,
+    required this.gunorta,
+    required this.ikindi,
+    required this.axsam,
+    required this.yatsi,
   });
 
+  // Create a factory method to create a PrayerTime instance from JSON
+  factory PrayerTimeModel.fromJson(Map<String, dynamic> json) {
+    return PrayerTimeModel(
+      tarix: json['tarix'],
+      subh: json['subh'],
+      gunes: json['gunes'],
+      gunorta: json['gunorta'],
+      ikindi: json['ikindi'],
+      axsam: json['axsam'],
+      yatsi: json['yatsi'],
+    );
+  }
+
+  // Convert a PrayerTime instance to JSON
   Map<String, dynamic> toJson() {
     return {
-      'Fajr': fajr,
-      'Dhuhr': dhuhr,
-      'Asr': asr,
-      'Maghrib': maghrib,
-      'Isha': isha,
+      'tarix': tarix,
+      'subh': subh,
+      'gunes': gunes,
+      'gunorta': gunorta,
+      'ikindi': ikindi,
+      'axsam': axsam,
+      'yatsi': yatsi,
     };
   }
+}
 
-  factory PrayTimeModel.fromJson(Map<String, dynamic> json) {
-    final prayers = json['prayers'] as List<dynamic>;
-    return PrayTimeModel(
-      fajr: prayers[0] ?? '',
-      dhuhr: prayers[2] ?? '',
-      asr: prayers[3] ?? '',
-      maghrib: prayers[4] ?? '',
-      isha: prayers[5] ?? '',
+extension PrayerTimeToEntity on PrayerTimeModel {
+  PrayerTimeEntity toEntity() {
+    return PrayerTimeEntity(
+      tarix: tarix,
+      subh: subh,
+      gunes: gunes,
+      gunorta: gunorta,
+      ikindi: ikindi,
+      axsam: axsam,
+      yatsi: yatsi,
     );
   }
 }
 
-extension PrayTimeModelX on PrayTimeModel {
-  PrayTimeEntity toEntity() {
-    return PrayTimeEntity(
-      fajr: fajr,
-      dhuhr: dhuhr,
-      asr: asr,
-      maghrib: maghrib,
-      isha: isha,
-    );
-  }
-}
+

@@ -40,27 +40,27 @@ class CustomBottomNavigationBar extends StatelessWidget {
           BottomAppBarItem(
             vectorPath: AppVectors.surahs,
             selectedIndex: selectedIndex,
-            currentIndex: 3,
+            currentIndex: 2,
             onTap: () {
-              context.read<BottomNavCubit>().changeIndex(3);
+              context.read<BottomNavCubit>().changeIndex(2);
             },
             labelText: 'Surahs',
           ),
           BottomAppBarItem(
             vectorPath: AppVectors.market,
             selectedIndex: selectedIndex,
-            currentIndex: 4,
+            currentIndex: 3,
             onTap: () {
-              context.read<BottomNavCubit>().changeIndex(4);
+              context.read<BottomNavCubit>().changeIndex(3);
             },
             labelText: 'Market',
           ),
           BottomAppBarItem(
             vectorPath: AppVectors.profile,
             selectedIndex: selectedIndex,
-            currentIndex: 5,
+            currentIndex: 4,
             onTap: () {
-              context.read<BottomNavCubit>().changeIndex(5);
+              context.read<BottomNavCubit>().changeIndex(4);
             },
             labelText: 'Profile',
           ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/config/theme/app_colors.dart';
 
 class FilterPage extends StatefulWidget {
-const FilterPage({ Key? key }) : super(key: key);
+const FilterPage({ super.key });
 
   @override
   State<FilterPage> createState() => _FilterPageState();
