@@ -10,6 +10,8 @@ class AppColors{
   static const grey = Color(0xFF8a8a8a);
   static const bottomNavigationBarColorDark = Color(0xFF737373);
   static const bottomNavigationBarColorLight = Color(0xFFFFFFFF);
+  static const black = Color(0xff000000);
+  static const borderColor = Color(0xffD1D1D1);
 
 
 }
