@@ -31,6 +31,7 @@ class PrayTime extends StatelessWidget {
             BlocListener<FetchPrayerTimesBloc, FetchPrayerTimesState>(
               listener: (context, state) {
                 if (state is FetchPrayerTimesSuccess) {
+                  print(MediaQuery.of(context).size.height);
                   print('State updated: ${state.city}');
                 }
                 if (state is FetchPrayerTimesFailure) {

@@ -16,33 +16,34 @@ class HomeBanner extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.16,
+            height: size.height * 0.17,
             decoration: const BoxDecoration(
               color: Color(0xFF95C8FF),
               image: DecorationImage(
-                alignment: Alignment.centerRight,
+                alignment: Alignment.bottomRight,
                 image: AssetImage(AppImages.banner),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Support our mosques',
-                  style: textTheme.headlineLarge!.copyWith(color: Colors.white, fontSize: 20),
-                ),
-                const SizedBox(height: 8,),
-                Text(
-                  'Your donation helps maintain and\nimprove our community mosques.\nEvery contribution counts.\nThank you for your generosity.',
-                  style: textTheme.headlineLarge!.copyWith(color: Colors.white, fontSize: 10),
-                ),
-                const SizedBox(height: 8,),
-                JummaElevatedButton(onPressed: (){}, title: 'İanə et', width: size.width * 0.45, height: size.height * 0.03,),
-              ],
+          SizedBox(
+            height: size.height * 0.17,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Məscidlərimizə dəstək olun',
+                    style: textTheme.headlineLarge!.copyWith(color: Colors.white, fontSize: 18),
+                  ),
+                  Text(
+                    'İanəniz məscidlərimizin saxlanmasına və\nabadlaşdırılmasına kömək edir.\nHər bir töhfə önəmlidir.\nSəxavətinizə görə təşəkkür edirik.',
+                    style: textTheme.headlineMedium!.copyWith(color: Colors.white, fontSize: 10),
+                  ),
+                  JummaElevatedButton(onPressed: (){}, title: 'İanə et', width: size.width * 0.45, height: size.height * 0.04,),
+                ],
+              ),
             ),
           ),
         ],
