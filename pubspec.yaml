@@ -37,6 +37,7 @@ flutter:
     - assets/images/
     - assets/json/
     - lib/src/features/home/data/sources/local/prayer_times/baku/august.json
+    - lib/src/features/home/data/sources/local/prayer_times/sumqayit/august.json
 
 
   fonts:
