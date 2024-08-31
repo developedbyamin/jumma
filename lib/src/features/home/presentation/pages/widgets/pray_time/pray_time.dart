@@ -1,96 +1,120 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../viewmodel/bloc/city_prayer_time_bloc.dart';
+import 'package:jumma/src/features/home/presentation/pages/widgets/pray_time/prayer_times.dart';
+import '../../../../data/sources/local/city_mapping.dart';
+import '../../../../domain/entities/pray_time.dart';
+import '../../../viewmodel/fetch_prayer_times_bloc.dart';
+import 'city_selection.dart';
+import 'next_prayer_time.dart';
 
 class PrayTime extends StatelessWidget {
   const PrayTime({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CityPrayerTimeBloc, CityPrayerTimeState>(
-      builder: (context, state) {
-        String cityText = 'Bakı';
-
-        if (state is CityChanged) {
-          cityText = state.city;
-        }
-
-        return Column(
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    context.read<FetchPrayerTimesBloc>().add(CityPrayerTimesEvent(city: 'baku'));
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextButton(
-                  onPressed: () {},
-                  child: Text('Ayliq'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const CitySelection(),
-                      ),
-                    );
-                  },
-                  child: Text(cityText),
-                ),
-              ],
+            OutlinedButton(
+              onPressed: () {},
+              style: ButtonStyle(
+                minimumSize:
+                    WidgetStateProperty.all(Size(width * 0.4, height * 0.05)),
+              ),
+              child: const Text('Aylıq'),
             ),
-            if (state is CityPrayerTimeLoading)
-              const CircularProgressIndicator()
-            else if (state is CityPrayerTimeSuccess)
-              Expanded(
-                child: ListView.builder(
-                  itemCount: state.prayerTimes.length,
-                  itemBuilder: (context, index) {
-                    final prayTime = state.prayerTimes[index];
-                    return ListTile(
-                      title: Text('Prayer Time: ${prayTime.toString()}'), // Adjust based on your PrayTimeEntity structure
-                    );
-                  },
-                ),
-              )
-            else if (state is CityPrayerTimeFailure)
-                const Text('Failed to load prayer times'),
-          ],
-        );
-      },
-    );
-  }
-}
-
-
-class CitySelection extends StatelessWidget {
-  const CitySelection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Select City')),
-      body: BlocBuilder<CityPrayerTimeBloc, CityPrayerTimeState>(
-        builder: (context, state) {
-          final List<String> cities = [
-            'Bakı',
-            'Sumqayıt',
-            'Lənkəran',
-          ];
-          return ListView.builder(
-            itemCount: cities.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(cities[index]),
-                onTap: () {
-                  context.read<CityPrayerTimeBloc>().add(
-                    CitySelected(city: cities[index]),
-                  );
-                  Navigator.pop(context);
+            BlocListener<FetchPrayerTimesBloc, FetchPrayerTimesState>(
+              listener: (context, state) {
+                if (state is FetchPrayerTimesSuccess) {
+                  print('State updated: ${state.city}');
+                }
+                if (state is FetchPrayerTimesFailure) {
+                  print('Failed the page couldnt rebuilded');
+                }
+              },
+              child: BlocSelector<FetchPrayerTimesBloc, FetchPrayerTimesState,
+                  String>(
+                selector: (state) {
+                  if (state is FetchPrayerTimesSuccess) {
+                    print(state.city);
+                    return CityMap.fetchToCityDisplay[state.city]!;
+                  }
+                  return 'Bakı'; // Default city name
                 },
+                builder: (context, displayCity) {
+                  print('Display city: $displayCity');
+                  return OutlinedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CitySelection()),
+                      );
+                    },
+                    style: ButtonStyle(
+                      foregroundColor:
+                          WidgetStateProperty.all(const Color(0xFF05AC58)),
+                      side: WidgetStateProperty.all(
+                          const BorderSide(color: Color(0xFF05AC58))),
+                      backgroundColor: WidgetStateProperty.all(
+                          const Color(0xFF05AC58).withOpacity(0.1)),
+                      minimumSize: WidgetStateProperty.all(
+                          Size(width * 0.4, height * 0.05)),
+                    ),
+                    child: Text(displayCity),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        BlocSelector<FetchPrayerTimesBloc, FetchPrayerTimesState, DateTime>(
+          selector: (state) {
+            if (state is FetchPrayerTimesSuccess) {
+              return DateTime.now();
+            }
+            return DateTime.now();
+          },
+          builder: (context, nextPrayerTime) {
+            return NextPrayerTimeWidget(
+              nextPrayer: nextPrayerTime,
+              namePrayer: 'Zohr',
+            );
+          },
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        BlocSelector<FetchPrayerTimesBloc, FetchPrayerTimesState,
+            List<PrayerTimeEntity>?>(
+          selector: (state) {
+            if (state is FetchPrayerTimesSuccess &&
+                state.prayerTimes.isNotEmpty) {
+              return state.prayerTimes;
+            }
+            return null;
+          },
+          builder: (context, prayerTimes) {
+            if (prayerTimes == null) {
+              return const Center(
+                child: Text(
+                  'No prayer times available.',
+                  style: TextStyle(color: Colors.red),
+                ),
               );
-            },
-          );
-        },
-      ),
+            }
+            return PrayerTimesWidget(prayerTimes: prayerTimes);
+          },
+        ),
+      ],
     );
   }
 }

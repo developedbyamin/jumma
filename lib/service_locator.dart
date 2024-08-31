@@ -8,6 +8,7 @@ import 'package:jumma/src/features/home/data/repository/prayer_time_repository_i
 import 'package:jumma/src/features/home/data/sources/local/pray_service.dart';
 import 'package:jumma/src/features/home/domain/repository/prayer_time_repository.dart';
 import 'package:jumma/src/features/home/domain/usecases/get_prayer_time_use_case.dart';
+import 'package:jumma/src/features/home/presentation/viewmodel/fetch_prayer_times_bloc.dart';
 
 
 final GetIt sl = GetIt.instance;
@@ -30,5 +31,7 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<PrayerTimeRepository>(PrayerTimeRepositoryImpl());
 
   sl.registerSingleton<GetPrayerTimeUseCase>(GetPrayerTimeUseCase());
+
+  sl.registerSingleton<FetchPrayerTimesBloc>(FetchPrayerTimesBloc());
 
 }

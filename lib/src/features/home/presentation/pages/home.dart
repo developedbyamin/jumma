@@ -4,9 +4,14 @@ import 'package:jumma/src/features/home/presentation/pages/widgets/home_banner.d
 import 'package:jumma/src/features/home/presentation/pages/widgets/pray_time/pray_time.dart';
 import '../../../../core/common/widgets/app_bar.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -27,6 +32,7 @@ class Home extends StatelessWidget {
               PrayTime(),
               SizedBox(height: 16),
               AdBanner(),
+              SizedBox(height: 100),
             ],
           ),
         ),

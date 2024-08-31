@@ -17,8 +17,6 @@ class PrayerTimeServiceImpl extends PrayerTimeService {
       final jsonData = json.decode(jsonString);
       final data = jsonData['PrayerTimes'] as List<dynamic>;
 
-      print(data);
-
       final prayTimes = data
           .map((item) => PrayerTimeModel.fromJson(item))
           .map((model) => model.toEntity())

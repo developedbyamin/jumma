@@ -37,6 +37,7 @@ class JummaAppBar extends StatelessWidget implements PreferredSizeWidget {
           icon: SvgPicture.asset(AppVectors.notification),
         ) : const SizedBox(),
       ],
+      surfaceTintColor: Colors.transparent,
     );
   }
 
