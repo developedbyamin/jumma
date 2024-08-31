@@ -19,7 +19,15 @@ class AppVectors{
   static const String search = '${basePath}search$format';
   static const next = '${basePath}next$format';
   static const String box = '${basePath}box$format';
-
+  static const allOrders = '${basePath}p1$format';
+  static const favorites = '${basePath}favorite$format';
+  static const languages = '${basePath}language$format';
+  static const helpFaq = '${basePath}helpandfaq$format';
+  static const changePassword = '${basePath}changepassword$format';
+  static const contactUs = '${basePath}contactus$format';
+  static const logOut = '${basePath}logout$format';
+  static const mescid = '${basePath}mescid$format';
+  static const change = '${basePath}change$format';
 
 
 }

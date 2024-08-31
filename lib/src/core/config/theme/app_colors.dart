@@ -12,6 +12,7 @@ class AppColors{
   static const bottomNavigationBarColorLight = Color(0xFFFFFFFF);
   static const black = Color(0xff000000);
   static const borderColor = Color(0xffD1D1D1);
-
+  static const white = Color(0xffffffff);
+  static const logOut = Color(0xffBD2828);
 
 }
