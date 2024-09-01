@@ -45,7 +45,7 @@ class PrayTime extends StatelessWidget {
                     print(state.city);
                     return CityMap.fetchToCityDisplay[state.city]!;
                   }
-                  return 'Bakı'; // Default city name
+                  return 'Bakı';
                 },
                 builder: (context, displayCity) {
                   print('Display city: $displayCity');
@@ -86,8 +86,7 @@ class PrayTime extends StatelessWidget {
           },
           builder: (context, nextPrayerTime) {
             return NextPrayerTimeWidget(
-              nextPrayer: nextPrayerTime,
-              namePrayer: 'Zohr',
+              nextPrayerTime: nextPrayerTime,
             );
           },
         ),
