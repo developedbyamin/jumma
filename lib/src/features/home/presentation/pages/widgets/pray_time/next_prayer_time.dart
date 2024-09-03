@@ -42,7 +42,7 @@ class _NextPrayerTimeWidgetState extends State<NextPrayerTimeWidget> {
     // Check if the remaining time is zero or less
     if (timeRemaining.isNegative || timeRemaining.inSeconds == 0) {
       return const Text(
-        'Bu gün üçün namaz bitmişdir',
+        'Bu gün üçün namaz bitmişdir ',
         style: TextStyle(
             fontSize: 12, color: Color(0xFFA9A9A9), fontWeight: FontWeight.w400),
       );

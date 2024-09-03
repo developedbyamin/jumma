@@ -51,14 +51,14 @@ class Mosque extends StatelessWidget {
                 itemCount: 10,
                 itemBuilder:(context, index) {
                   return  MosqueCard(
-                    image: AppImages.mosque, 
-                    mosque: 'Bibi-Heybat Mosque', 
-                    location: 'Sabayil District, Baku', 
+                    image: AppImages.mosque,
+                    mosque: 'Bibi-Heybat Mosque',
+                    location: 'Sabayil District, Baku',
                     onTap: () {  },
                   );
                 },
               ),
-            )
+            ),
           ],
         ),
       ),
