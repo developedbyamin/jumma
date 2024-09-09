@@ -26,8 +26,6 @@ Future<void> initializeDependencies() async {
     SignInUseCase(),
   );
 
-  sl.registerSingleton<TokenStore>(TokenStore());
-
   // Home
   sl.registerSingleton<PrayerTimeService>(PrayerTimeServiceImpl());
 
