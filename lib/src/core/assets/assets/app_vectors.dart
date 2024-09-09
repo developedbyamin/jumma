@@ -28,6 +28,7 @@ class AppVectors{
   static const logOut = '${basePath}logout$format';
   static const mescid = '${basePath}mescid$format';
   static const change = '${basePath}change$format';
-
+  static const delete = '${basePath}delete$format';
+  static const success = '${basePath}success$format';
 
 }
