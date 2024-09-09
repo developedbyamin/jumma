@@ -21,7 +21,6 @@ class FetchPrayerTimesBloc
           GetPrayerTimeParams(city: event.city, month: 'august');
 
       var result = await sl<GetPrayerTimeUseCase>().call(params: params);
-      print(result);
 
       result.fold(
         (failure) => emit(

@@ -7,8 +7,6 @@ import 'package:jumma/src/features/surahs/cubit/surahs_cubit.dart';
 import 'package:jumma/src/features/surahs/data/model/local/surahs_model.dart';
 import 'package:jumma/src/core/extensions/bracket_extension.dart';
 
-import '../../../../core/ads/ad_banner.dart';
-
 class Surahs extends StatelessWidget {
   const Surahs({super.key, required this.surahsModel});
   final SurahsModel surahsModel;

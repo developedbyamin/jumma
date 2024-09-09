@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jumma/src/core/config/theme/app_colors.dart';
 import 'package:jumma/src/features/auth/presentation/pages/widgets/social_icons.dart';
 import '../../../../core/assets/assets/app_vectors.dart';
@@ -8,27 +8,14 @@ import '../../../../core/common/bottom_navigation_bar/pages/root.dart';
 import '../../../../core/common/widgets/elevated_button.dart';
 import '../../domain/entities/signin_user.dart';
 import '../viewmodel/signin_cubit.dart';
-
 import 'signup.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({super.key});
+class SignInPage extends StatelessWidget {
+  SignInPage({super.key});
 
-  @override
-  State<SignInPage> createState() => _SignInPageState();
-}
-
-class _SignInPageState extends State<SignInPage> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
-  @override
-  void dispose() {
-    _email.dispose();
-    _password.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,12 +43,20 @@ class _SignInPageState extends State<SignInPage> {
                       context: context,
                       barrierDismissible: false,
                       builder: (context) => const Center(
-                        child: CircularProgressIndicator(color: AppColors.primary,),
+                        child: CircularProgressIndicator(color: AppColors.primary),
                       ),
                     );
                   } else if (state is SignInSuccess) {
+                    Navigator.of(context, rootNavigator: true).pop(); // Dismiss the dialog
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Giriş edildi!', style: TextStyle(color: Colors.white),),backgroundColor: AppColors.primary, duration: Duration(seconds: 1),),
+                      const SnackBar(
+                        content: Text(
+                          'Giriş edildi!',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        backgroundColor: AppColors.primary,
+                        duration: Duration(seconds: 1),
+                      ),
                     );
                     Navigator.pushAndRemoveUntil(
                       context,
@@ -69,6 +64,7 @@ class _SignInPageState extends State<SignInPage> {
                           (Route<dynamic> route) => false,
                     );
                   } else if (state is SignInFailure) {
+                    Navigator.of(context, rootNavigator: true).pop(); // Dismiss the dialog
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Giriş uğursuz! ${state.error}')),
                     );
@@ -122,13 +118,9 @@ class _SignInPageState extends State<SignInPage> {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      const SizedBox(height: 16),
                       const SocialIcons(),
-                      const SizedBox(
-                        height: 8,
-                      ),
+                      const SizedBox(height: 8),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -144,8 +136,7 @@ class _SignInPageState extends State<SignInPage> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const SignUpPage(),
+                                  builder: (BuildContext context) => const SignUpPage(),
                                 ),
                               );
                             },
