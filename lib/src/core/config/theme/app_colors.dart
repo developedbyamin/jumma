@@ -14,5 +14,7 @@ class AppColors{
   static const borderColor = Color(0xffD1D1D1);
   static const white = Color(0xffffffff);
   static const logOut = Color(0xffBD2828);
+  static const red = Color(0xffFF0000);
+
 
 }
