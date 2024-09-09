@@ -19,8 +19,6 @@ class TokenStore {
     try {
       String? accessToken = await _secureStorage.read(key: 'accessToken');
       String? refreshToken = await _secureStorage.read(key: 'refreshToken');
-      debugPrint("Tokens read: $accessToken, $refreshToken");
-
       if (accessToken != null && refreshToken != null) {
         return AuthTokens(accessToken: accessToken, refreshToken: refreshToken);
       }
