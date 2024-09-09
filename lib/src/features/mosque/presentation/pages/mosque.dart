@@ -48,10 +48,11 @@ class Mosque extends StatelessWidget {
                     mosque: 'Bibi-Heybat Mosque', 
                     location: 'Sabayil District, Baku', 
                     onTap: () {},
+
                   );
                 },
               ),
-            )
+            ),
           ],
         ),
       ),

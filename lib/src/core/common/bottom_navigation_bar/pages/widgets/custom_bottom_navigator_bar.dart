@@ -6,8 +6,9 @@ import 'bottom_app_bar_item.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final int selectedIndex;
+  final ValueChanged<int> onTap;
 
-  const CustomBottomNavigationBar({super.key, required this.selectedIndex});
+  const CustomBottomNavigationBar({super.key, required this.selectedIndex, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

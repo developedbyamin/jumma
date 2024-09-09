@@ -6,4 +6,8 @@ abstract class AuthRepository{
   Future<Either> signUp(SignUpUserModel createUserReq);
 
   Future<Either> signIn(SignInUserModel signInUserReq);
+
+  Future<Either> refreshToken(String refreshToken);
+
+  Future<Either> isAuthenticated();
 }

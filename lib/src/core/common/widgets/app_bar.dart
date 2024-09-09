@@ -13,6 +13,7 @@ class JummaAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return AppBar(
+      backgroundColor: Colors.transparent,
       title: Text(
         title,
         style: textTheme.headlineMedium,

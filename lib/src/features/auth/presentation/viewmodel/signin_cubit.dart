@@ -15,7 +15,9 @@ class SignInCubit extends Cubit<SignInState> {
     var result = await sl<SignInUseCase>().call(params: signInUserModel);
     result.fold(
           (failure) => emit(SignInFailure(failure.toString())),
-          (user) => emit(SignInSuccess()),
+          (success){
+            emit(SignInSuccess());
+          },
     );
   }
 }

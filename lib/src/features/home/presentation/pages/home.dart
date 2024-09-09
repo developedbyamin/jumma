@@ -4,24 +4,20 @@ import 'package:jumma/src/features/home/presentation/pages/widgets/home_banner.d
 import 'package:jumma/src/features/home/presentation/pages/widgets/pray_time/pray_time.dart';
 import '../../../../core/common/widgets/app_bar.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: Colors.white,
       appBar: JummaAppBar(
         title: 'Home',
         actions: true,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -32,7 +28,6 @@ class _HomeState extends State<Home> {
               PrayTime(),
               SizedBox(height: 16),
               AdBanner(),
-              SizedBox(height: 100),
             ],
           ),
         ),

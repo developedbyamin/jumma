@@ -23,7 +23,6 @@ class CitySelection extends StatelessWidget {
 
             return GestureDetector(
               onTap: () {
-                print(fetchCity);
                 context.read<FetchPrayerTimesBloc>().add(CityPrayerTimesEvent(city: fetchCity));
                 Navigator.pop(context);
               },

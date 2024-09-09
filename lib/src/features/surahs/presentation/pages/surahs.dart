@@ -67,7 +67,7 @@ class Surahs extends StatelessWidget {
               } else {
                 return const SizedBox.shrink();
               }
-            })
+            }),
           ],
         ),
       ),
