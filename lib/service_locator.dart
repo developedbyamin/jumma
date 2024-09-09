@@ -1,6 +1,5 @@
 import 'package:get_it/get_it.dart';
 import 'package:jumma/src/features/auth/data/repository/auth_impl.dart';
-import 'package:jumma/src/features/auth/data/sources/local/token_store.dart';
 import 'package:jumma/src/features/auth/data/sources/remote/auth_service.dart';
 import 'package:jumma/src/features/auth/domain/repository/auth.dart';
 import 'package:jumma/src/features/auth/domain/usecases/signin_use_case.dart';
