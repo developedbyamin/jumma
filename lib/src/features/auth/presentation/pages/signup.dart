@@ -252,7 +252,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      const SignInPage(),
+                                      SignInPage(),
                                 ),
                               );
                             },

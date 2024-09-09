@@ -10,9 +10,10 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: Colors.white,
       appBar: JummaAppBar(
         title: 'Home',
-        actions: true,  
+        actions: true,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0),

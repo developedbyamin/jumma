@@ -31,24 +31,19 @@ class PrayTime extends StatelessWidget {
             BlocListener<FetchPrayerTimesBloc, FetchPrayerTimesState>(
               listener: (context, state) {
                 if (state is FetchPrayerTimesSuccess) {
-                  print(MediaQuery.of(context).size.height);
-                  print('State updated: ${state.city}');
                 }
                 if (state is FetchPrayerTimesFailure) {
-                  print('Failed the page couldnt rebuilded');
                 }
               },
               child: BlocSelector<FetchPrayerTimesBloc, FetchPrayerTimesState,
                   String>(
                 selector: (state) {
                   if (state is FetchPrayerTimesSuccess) {
-                    print(state.city);
                     return CityMap.fetchToCityDisplay[state.city]!;
                   }
                   return 'Bakı';
                 },
                 builder: (context, displayCity) {
-                  print('Display city: $displayCity');
                   return OutlinedButton(
                     onPressed: () {
                       Navigator.push(
