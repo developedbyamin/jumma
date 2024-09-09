@@ -4,11 +4,10 @@ import '../../../../../core/config/theme/app_colors.dart';
 class MosqueCard extends StatelessWidget {
   const MosqueCard(
       {super.key,
-      required this.image,
       required this.mosque,
-      required this.location, required this.onTap});
+      required this.location,
+      required this.onTap});
 
-  final String image;
   final String mosque;
   final String location;
   final VoidCallback onTap;
@@ -21,36 +20,37 @@ class MosqueCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: Row(children: [
-          Image.asset(
-            image,
-            width: 75,
-            height: 75,
-            fit: BoxFit.cover,
-          ),
           const SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                mosque,
-                style: textTheme.headlineMedium,
-              ),
-              const SizedBox(height: 9),
-              Row(
-                children: [
-                  const Icon(
-                    Icons.location_on,
-                    size: 25,
-                    color: AppColors.grey,
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    location,
-                    style: textTheme.labelSmall,
-                  ),
-                ],
-              ),
-            ],
+          Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide()
+              )
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  mosque,
+                  style: textTheme.headlineMedium,
+                ),
+                const SizedBox(height: 9),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.location_on,
+                      size: 25,
+                      color: AppColors.grey,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      location,
+                      style: textTheme.labelSmall,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           )
         ]),
       ),

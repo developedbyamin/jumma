@@ -57,7 +57,7 @@ class Market extends StatelessWidget {
             ),
             Text('Stay tuned.',style: GoogleFonts.dmSans(fontSize: 14,fontWeight: FontWeight.w400,color: AppColors.greyLight),)
           ],
-        ),
+        )
       ),
     );
   }
