@@ -20,9 +20,10 @@ dependencies:
   dio: ^5.6.0
   shared_preferences: ^2.3.1
   equatable: ^2.0.5
-  flutter_secure_storage: ^9.2.2
   awesome_dio_interceptor: ^1.2.0
   jwt_decoder: ^2.0.1
+  flutter_secure_storage: ^9.2.2
+
 
 dev_dependencies:
   flutter_test:
