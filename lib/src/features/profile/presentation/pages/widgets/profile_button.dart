@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jumma/src/core/extensions/context_extension.dart';
 import 'package:jumma/src/core/extensions/sizedbox_extension.dart';
 
-import '../../../core/config/theme/app_colors.dart';
+import '../../../../../core/config/theme/app_colors.dart';
 
 class ProfileButton extends StatelessWidget {
   const ProfileButton(
