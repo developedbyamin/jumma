@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../core/assets/assets/app_vectors.dart';
+import '../../../../core/assets/assets/app_vectors.dart';
 
 class FilterButton extends StatelessWidget {
   const FilterButton({super.key, required this.onTap});

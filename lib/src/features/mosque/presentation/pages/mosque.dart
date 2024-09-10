@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:jumma/src/features/mosque/presentation/viewmodel/cubit/mosque_cubit.dart';
 import '../../../../core/assets/assets/app_vectors.dart';
-import 'widgets/mosque_card.dart';
+import '../widgets/mosque_card.dart';
 
 class Mosque extends StatelessWidget {
   const Mosque({super.key});
@@ -9,6 +11,7 @@ class Mosque extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextEditingController searchController = TextEditingController();
+    context.read<MosqueCubit>().getMosques();
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -34,27 +37,33 @@ class Mosque extends StatelessWidget {
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 10,),
-            Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder:(context, index) {
-                  return  MosqueCard(
-                    mosque: 'Bibi-Heybat Mosque', 
-                    location: 'Sabayil District, Baku', 
-                    onTap: () {},
-
-                  );
-                },
-              ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 10,),
+          Expanded(
+            child: BlocBuilder<MosqueCubit, MosqueState>(
+              builder: (context, state) {
+                if(state is MosqueLoading){
+                  return CircularProgressIndicator();
+                }
+                else if(state is MosqueSuccess){
+                  return ListView.builder(
+                          itemCount: 10,
+                          itemBuilder:(context, index) {
+                            return  MosqueCard(
+                              onTap: () {}, mosques: state.mosques[index] ,
+                            );
+                          },
+                        );
+                }else{
+                  return SizedBox.shrink();
+                }
+              
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
