@@ -12,6 +12,7 @@ import 'package:jumma/src/features/home/presentation/viewmodel/fetch_prayer_time
 import 'package:jumma/src/features/mosque/data/repository/mosque_repository_impl.dart';
 import 'package:jumma/src/features/mosque/data/sources/mosque_service.dart';
 import 'package:jumma/src/features/mosque/domain/repository/mosque_repository.dart';
+import 'package:jumma/src/features/mosque/domain/usecases/mosque_usecase.dart';
 import 'package:jumma/src/features/profile/data/repository/user_profile_repository_impl.dart';
 import 'package:jumma/src/features/profile/data/sources/user_profile_service.dart';
 import 'package:jumma/src/features/profile/domain/repository/user_profile_repository.dart';
@@ -52,5 +53,6 @@ Future<void> initializeDependencies() async {
 
   sl.registerSingleton<MosqueRepository>(MosqueRepositoryImpl());
   sl.registerSingleton<MosqueService>(MosqueServiceImpl());
+  sl.registerSingleton<MosqueUsecase>(MosqueUsecase());
 
 }

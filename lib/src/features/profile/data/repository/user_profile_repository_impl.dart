@@ -9,6 +9,7 @@ class UserProfileRepositoryImpl extends UserProfileRepository {
   Future<void> updateUserProfile(UserProfileModel userProfileModel) async =>
       await sl<UserProfileService>().updateUserProfile(userProfileModel);
 
+
   @override
   Future<void> changePassword(ChangePasswordModel changePasswordModel) async => 
       await sl<UserProfileService>().changePassword(changePasswordModel);
