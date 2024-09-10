@@ -41,9 +41,6 @@ class MyApp extends StatelessWidget {
         BlocProvider<FetchPrayerTimesBloc>(
           create: (context) => FetchPrayerTimesBloc(),
         ),
-        BlocProvider<MosqueCubit>(
-          create: (context) => MosqueCubit()..getMosques(),
-        ),
       ],
       child: MaterialApp(
         theme: AppTheme.themeJumma,

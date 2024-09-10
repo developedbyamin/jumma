@@ -1,35 +1,13 @@
-import 'dart:convert';
-
-MosqueModel mosqueModelFromJson(String str) =>
-    MosqueModel.fromJson(json.decode(str));
-
-String mosqueModelToJson(MosqueModel data) => json.encode(data.toJson());
+import '../../domain/entities/mosque_entity.dart';
 
 class MosqueModel {
-  final List<MosqueModel> mosques;
-
-  MosqueModel({
-    required this.mosques,
-  });
-
-  factory MosqueModel.fromJson(Map<String, dynamic> json) => MosqueModel(
-        mosques:
-            List<MosqueModel>.from(json["mosques"].map((x) => Mosque.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "mosques": List<dynamic>.from(mosques.map((x) => x.toJson())),
-      };
-}
-
-class Mosque {
   final int id;
   final String name;
   final String address;
   final String city;
   final String googleMapLink;
 
-  Mosque({
+  MosqueModel({
     required this.id,
     required this.name,
     required this.address,
@@ -37,7 +15,7 @@ class Mosque {
     required this.googleMapLink,
   });
 
-  factory Mosque.fromJson(Map<String, dynamic> json) => Mosque(
+  factory MosqueModel.fromJson(Map<String, dynamic> json) => MosqueModel(
         id: json["id"],
         name: json["name"],
         address: json["address"],
@@ -53,3 +31,14 @@ class Mosque {
         "googleMapLink": googleMapLink,
       };
 }
+
+extension MosqueModelToEntity on MosqueModel {
+  MosqueEntity toEntity() {
+    return MosqueEntity(
+      name: name,
+      address: address,
+      googleMapLink: googleMapLink,
+    );
+  }
+}
+

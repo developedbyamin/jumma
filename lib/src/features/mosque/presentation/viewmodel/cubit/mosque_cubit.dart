@@ -14,14 +14,17 @@ class MosqueCubit extends Cubit<MosqueState> {
       emit(MosqueLoading());
       final result = await sl<MosqueUsecase>().call();
       result.fold(
-        (failure){
-          emit(MosqueError());
-        },
-        (data){
-          emit(MosqueSuccess(mosques: data));
-        }
+              (failure) {
+            print("Error occurred: $failure");
+            emit(MosqueError());
+          },
+              (data) {
+            print("Fetched mosques: $data");
+            emit(MosqueSuccess(mosques: data));
+          }
       );
     } catch (e) {
+      print("Exception occurred: $e");
       emit(MosqueError());
     }
   }
