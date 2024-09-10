@@ -9,6 +9,9 @@ import 'package:jumma/src/features/home/data/sources/local/pray_service.dart';
 import 'package:jumma/src/features/home/domain/repository/prayer_time_repository.dart';
 import 'package:jumma/src/features/home/domain/usecases/get_prayer_time_use_case.dart';
 import 'package:jumma/src/features/home/presentation/viewmodel/fetch_prayer_times_bloc.dart';
+import 'package:jumma/src/features/mosque/data/repository/mosque_repository_impl.dart';
+import 'package:jumma/src/features/mosque/data/sources/mosque_service.dart';
+import 'package:jumma/src/features/mosque/domain/repository/mosque_repository.dart';
 import 'package:jumma/src/features/profile/data/repository/user_profile_repository_impl.dart';
 import 'package:jumma/src/features/profile/data/sources/user_profile_service.dart';
 import 'package:jumma/src/features/profile/domain/repository/user_profile_repository.dart';
@@ -44,5 +47,10 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<GetPrayerTimeUseCase>(GetPrayerTimeUseCase());
 
   sl.registerSingleton<FetchPrayerTimesBloc>(FetchPrayerTimesBloc());
+
+  // Mosque
+
+  sl.registerSingleton<MosqueRepository>(MosqueRepositoryImpl());
+  sl.registerSingleton<MosqueService>(MosqueServiceImpl());
 
 }
