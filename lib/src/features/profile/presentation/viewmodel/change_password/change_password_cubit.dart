@@ -1,9 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:jumma/src/features/profile/data/models/change_password_model.dart';
-import 'package:jumma/src/features/profile/domain/entities/change_password_entity.dart';
-import 'package:jumma/src/features/profile/domain/usecases/change_password_usecase.dart';
-
+import '../../../data/models/change_password_model.dart';
+import '../../../domain/entities/change_password_entity.dart';
+import '../../../domain/usecases/change_password_usecase.dart';
 import '../../../../../../service_locator.dart';
 part 'change_password_state.dart';
 

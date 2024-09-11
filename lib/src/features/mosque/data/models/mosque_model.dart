@@ -35,6 +35,7 @@ class MosqueModel {
 extension MosqueModelToEntity on MosqueModel {
   MosqueEntity toEntity() {
     return MosqueEntity(
+      id: id,
       name: name,
       address: address,
       googleMapLink: googleMapLink,
