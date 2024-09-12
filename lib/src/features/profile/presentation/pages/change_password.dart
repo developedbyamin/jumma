@@ -94,13 +94,11 @@ class ChangePassword extends StatelessWidget {
                 },
                 child: JummaElevatedButton(
                   onPressed: () {
-                    
-                      final entity = ChangePasswordEntity(
-                          currentPassword: cubit.passwordController.text,
-                          newPassword: cubit.newPassController.text,
-                          reNewPassword: cubit.repeatPassController.text);
-                      cubit.changePassword(entity);
-                    
+                    final entity = ChangePasswordEntity(
+                        currentPassword: cubit.passwordController.text,
+                        newPassword: cubit.newPassController.text,
+                        reNewPassword: cubit.repeatPassController.text);
+                    cubit.changePassword(entity);
                   },
                   width: context.fullWidth,
                   title: 'Save',
@@ -121,7 +119,8 @@ class ChangePassword extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
-          contentPadding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

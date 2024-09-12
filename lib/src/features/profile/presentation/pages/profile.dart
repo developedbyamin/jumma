@@ -24,11 +24,12 @@ class _ProfileState extends State<Profile> {
   String? name;
   String? surname;
   String? email;
+  String? gender;
 
   @override
   void initState() {
     super.initState();
-    _loadUserProfile();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _loadUserProfile());
   }
 
   Future<void> _loadUserProfile() async {
@@ -39,6 +40,7 @@ class _ProfileState extends State<Profile> {
       name = accessToken.getName();
       surname = accessToken.getSurname();
       email = accessToken.getUserEmail();
+      gender = accessToken.getGender();
     });
   }
 
@@ -97,13 +99,15 @@ class _ProfileState extends State<Profile> {
               },
             ),
             const ProfileButton(text: 'Favorites', svg: AppVectors.favorites),
-            ProfileButton(
-              text: 'Mosque',
-              svg: AppVectors.mescid,
-              onTap: () {
-                context.to(Pager.selectMosque);
-              },
-            ),
+            gender == 'Female'?
+              const SizedBox.shrink():
+              ProfileButton(
+                text: 'Mosque',
+                svg: AppVectors.mescid,
+                onTap: () {
+                  context.to(Pager.selectMosque);
+                },
+              ),
             const ProfileButton(text: 'Languages', svg: AppVectors.languages),
             ProfileButton(
               text: 'Help & FAQ',

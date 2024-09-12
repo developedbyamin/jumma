@@ -22,6 +22,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
   String email = '';
   String name = '';
   String surname = '';
+  String phone = '';
 
   Future<void> loadUserProfile() async {
     final token = await TokenStore.getTokens();
@@ -31,10 +32,12 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
     email = accessToken.getUserEmail();
     name = accessToken.getName();
     surname = accessToken.getSurname();
+    phone = accessToken.getPhone();
 
     emailController.text = email;
     nameController.text = name;
     surnameController.text = surname;
+    phoneController.text = phone;
   } 
 
   Future<void> updateProfile(UserProfileEntity userProfile) async {

@@ -1,8 +1,10 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
+import 'package:jumma/src/features/profile/domain/entities/user_data_entity.dart';
 import '../../../../core/config/constants/api_key.dart';
 import '../../../../core/interceptors/app_interceptor.dart';
 import '../models/change_password_model.dart';
+import '../models/user_data_model.dart';
 import '../models/user_profile_model.dart';
 
 abstract class UserProfileService {
@@ -10,6 +12,7 @@ abstract class UserProfileService {
   Future<void> changePassword(ChangePasswordModel changePasswordModel);
   Future<void> deleteUser(String uId);
   Future<void> selectMosque(int mosqueId);
+  Future<UserDataEntity> getUserData(String uId);
 }
 
 class UserProfileServiceImpl implements UserProfileService {
@@ -81,6 +84,22 @@ class UserProfileServiceImpl implements UserProfileService {
       }
     } catch (e) {
       log('$e');
+      throw Exception('$e');
+    }
+  }
+
+  @override
+  Future<UserDataEntity> getUserData(String uId) async {
+    try {
+      final url = 'https://jumma.svdev.me//api/User/$uId';
+      final response = await _dio.get(url);
+
+      if (response.statusCode == 200) {
+        return UserDataModel.fromJson(response.data).toEntity();
+      } else {
+        throw Exception('Failed to delete user: ${response.statusCode}');
+      }
+    } catch (e) {
       throw Exception('$e');
     }
   }
