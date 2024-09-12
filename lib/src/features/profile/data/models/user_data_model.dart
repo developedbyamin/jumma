@@ -48,6 +48,6 @@ extension UserDataModelToEntity on UserDataModel {
     return UserDataEntity(
         firstName: firstName,
         lastName: lastName,
-        phoneNumber: phoneNumber);
+        phoneNumber: phoneNumber, isImam: isImam);
   }
 }

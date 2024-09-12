@@ -6,6 +6,7 @@ import 'package:jumma/src/core/common/bottom_navigation_bar/bloc/bottom_nav_cubi
 import 'package:jumma/src/core/common/splash/presentation/pages/splash.dart';
 import 'package:jumma/src/core/config/theme/appTheme/app_theme.dart';
 import 'package:jumma/src/features/home/presentation/viewmodel/fetch_prayer_times_bloc.dart';
+import 'package:jumma/src/features/profile/presentation/viewmodel/user_data/user_data_cubit.dart';
 
 
 Future<void> main() async {
@@ -39,6 +40,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<FetchPrayerTimesBloc>(
           create: (context) => FetchPrayerTimesBloc(),
+        ),
+        BlocProvider<UserDataCubit>(
+          create: (context) => UserDataCubit(),
         ),
       ],
       child: MaterialApp(
