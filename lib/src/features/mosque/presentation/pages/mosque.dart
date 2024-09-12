@@ -8,6 +8,8 @@ import '../widgets/mosque_card.dart';
 class Mosque extends StatelessWidget {
   const Mosque({super.key});
 
+  
+
   @override
   Widget build(BuildContext context) {
     final TextEditingController searchController = TextEditingController();
@@ -57,7 +59,6 @@ class Mosque extends StatelessWidget {
                       // Use the actual length of the mosques list
                       itemBuilder: (context, index) {
                         return MosqueCard(
-                          onTap: () {},
                           mosques: state.mosques[index],
                         );
                       },
@@ -66,7 +67,7 @@ class Mosque extends StatelessWidget {
                   else if (state is MosqueError) {
                     return Text("ERROR");
                   }
-                  return Text("AY BLYA");
+                  return Text("Error");
                 },
               ),
             ),
