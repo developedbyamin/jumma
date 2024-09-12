@@ -3,4 +3,6 @@ class AuthTokens {
   final String refreshToken;
 
   AuthTokens({required this.accessToken, required this.refreshToken});
+
+  String? getName() {}
 }
