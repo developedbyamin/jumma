@@ -23,6 +23,7 @@ dependencies:
   awesome_dio_interceptor: ^1.2.0
   jwt_decoder: ^2.0.1
   flutter_secure_storage: ^9.2.2
+  url_launcher: ^6.3.0
 
 
 

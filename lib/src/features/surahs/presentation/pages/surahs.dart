@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jumma/src/core/config/theme/app_colors.dart';
 import 'package:jumma/src/core/extensions/context_extension.dart';
+import 'package:jumma/src/core/extensions/sizedbox_extension.dart';
 import 'package:jumma/src/features/surahs/cubit/surahs_cubit.dart';
 import 'package:jumma/src/features/surahs/data/model/local/surahs_model.dart';
 import 'package:jumma/src/core/extensions/bracket_extension.dart';
@@ -55,9 +56,18 @@ class Surahs extends StatelessWidget {
                       itemCount: surahsModel.say,
                       itemBuilder: (_, i) {
                         if (surahsModel.id == surahs[i]['chapter']) {
-                          return Text(
-                            surahs[i]['text'],
-                            style: GoogleFonts.dmSans(fontSize: 16,fontWeight: FontWeight.w400,color: AppColors.black),
+                          return Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('${surahs[i]['verse']}.',style: GoogleFonts.dmSans(fontSize: 16,fontWeight: FontWeight.w400,color: AppColors.black),),
+                              5.w,
+                              Expanded(
+                                child: Text(
+                                  surahs[i]['text'],
+                                  style: GoogleFonts.dmSans(fontSize: 16,fontWeight: FontWeight.w400,color: AppColors.black),
+                                ),
+                              ),
+                            ],
                           );
                         } else {
                           return const SizedBox.shrink();
