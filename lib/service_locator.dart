@@ -17,6 +17,7 @@ import 'package:jumma/src/features/profile/data/repository/user_profile_reposito
 import 'package:jumma/src/features/profile/data/sources/user_profile_service.dart';
 import 'package:jumma/src/features/profile/domain/repository/user_profile_repository.dart';
 import 'package:jumma/src/features/profile/domain/usecases/update_user_profile_usecase.dart';
+import 'package:jumma/src/features/profile/domain/usecases/user_data_usecase.dart';
 import 'src/features/profile/domain/usecases/change_password_usecase.dart';
 import 'src/features/profile/domain/usecases/delete_user_usecase.dart';
 import 'src/features/profile/domain/usecases/select_mosque_usecase.dart';
@@ -43,6 +44,7 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<ChangePasswordUsecase>(ChangePasswordUsecase());
   sl.registerSingleton<DeleteUserUsecase>(DeleteUserUsecase());
   sl.registerSingleton<SelectMosqueUsecase>(SelectMosqueUsecase());
+  sl.registerSingleton<UserDataUsecase>(UserDataUsecase());
 
   // Home
   sl.registerSingleton<PrayerTimeService>(PrayerTimeServiceImpl());

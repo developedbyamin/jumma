@@ -12,8 +12,11 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   Future<UserDataEntity> getUserData(String uId) async {
     try {
+      log('message');
       emit(UserDataLoading());
+      log('message1');
       final user = await sl<UserDataUsecase>().call(params: uId);
+      log('message2');
       emit(UserDataSuccess(user));
     } catch (e) {
       log('$e');
