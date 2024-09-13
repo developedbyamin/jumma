@@ -1,7 +1,7 @@
 import '../../domain/entities/user_data_entity.dart';
 
 class UserDataModel {
-  final int id;
+  final String id;
   final String firstName;
   final String lastName;
   final String email;

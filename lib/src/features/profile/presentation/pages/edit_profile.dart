@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jumma/src/core/extensions/jwt_extension.dart';
 import '../../../../core/extensions/navigation_extension.dart';
+import '../../../auth/data/sources/local/token_store.dart';
 import '../../../auth/presentation/pages/signin.dart';
 import '../../domain/entities/user_profile_entity.dart';
 import '../viewmodel/delete_user/delete_user_cubit.dart';
+import '../viewmodel/user_data/user_data_cubit.dart';
 import 'widgets/alert_button.dart';
 import '../viewmodel/update_profile/update_profile_cubit.dart';
 import 'widgets/delete_button.dart';
@@ -12,8 +15,30 @@ import '../../../../core/extensions/sizedbox_extension.dart';
 import 'widgets/custom_text_input.dart';
 import '../../../../core/config/theme/app_colors.dart';
 
-class EditProfile extends StatelessWidget {
+class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
+
+  @override
+  State<EditProfile> createState() => _EditProfileState();
+}
+
+class _EditProfileState extends State<EditProfile> {
+  String uId = '';
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _loadUserProfile());
+  }
+
+  Future<void> _loadUserProfile() async {
+    final token = await TokenStore.getTokens();
+    final accessToken = token!.accessToken;
+
+    setState(() {
+      uId = accessToken.getUId();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +56,7 @@ class EditProfile extends StatelessWidget {
           BlocListener<UpdateProfileCubit, UpdateProfileState>(
             listener: (context, state) {
               if (state is UpdateProfileSuccess) {
+                context.read<UserDataCubit>().getUserData(uId);
                 Navigator.of(context).pop();
               } else if (state is UpdateProfileFailure) {
                 ScaffoldMessenger.of(context).showSnackBar(

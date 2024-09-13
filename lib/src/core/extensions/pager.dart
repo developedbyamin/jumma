@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jumma/src/features/mosque/presentation/viewmodel/cubit/mosque_cubit.dart';
 import 'package:jumma/src/features/profile/presentation/pages/select_mosque.dart';
 import 'package:jumma/src/features/profile/presentation/viewmodel/select_mosque/select_mosque_cubit.dart';
+import 'package:jumma/src/features/profile/presentation/viewmodel/user_data/user_data_cubit.dart';
 import '../../features/profile/presentation/viewmodel/change_password/change_password_cubit.dart';
 import '../../features/profile/presentation/pages/change_password.dart';
 import '../../features/profile/presentation/pages/edit_profile.dart';
@@ -11,8 +12,15 @@ import '../../features/profile/presentation/viewmodel/update_profile/update_prof
 class Pager {
   Pager._();
 
-  static Widget get editProfile => BlocProvider(
-        create: (context) => UpdateProfileCubit()..loadUserProfile(),
+  static Widget get editProfile => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => UpdateProfileCubit()..loadUserProfile(),
+          ),
+          BlocProvider(
+            create: (context) => UserDataCubit(),
+          ),
+        ],
         child: const EditProfile(),
       );
 

@@ -1,14 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jumma/src/core/common/bottom_navigation_bar/pages/auth.dart';
 import 'package:jumma/src/core/config/theme/app_colors.dart';
 import 'package:jumma/src/features/auth/presentation/pages/widgets/social_icons.dart';
-import 'package:jumma/src/features/imam/presentation/imam_admin_panel.dart';
-import 'package:jumma/src/features/profile/presentation/viewmodel/user_data/user_data_cubit.dart';
 import '../../../../core/assets/assets/app_vectors.dart';
-import '../../../../core/common/bottom_navigation_bar/pages/root.dart';
 import '../../../../core/common/widgets/elevated_button.dart';
 import '../../domain/entities/signin_user.dart';
 import '../viewmodel/signin_cubit.dart';
@@ -67,23 +63,8 @@ class SignInPage extends StatelessWidget {
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              BlocBuilder<UserDataCubit, UserDataState>(
-                                builder: (context, state) {
-                                  if (state is UserDataSuccess) {
-                                    if (state.user.isImam == true) {
-                                      log('1');
-                                      return ImamAdminPanel();
-                                    } else {
-                                      log('2');
-                                      return const ImamAdminPanel();
-                                    }
-                                  } else {
-                                    log('3');
-                                    return Root();
-                                  }
-                                },
-                              )),
+                        builder: (context) => const Auth()
+                      ),
                       (Route<dynamic> route) => false,
                     );
                   } else if (state is SignInFailure) {
