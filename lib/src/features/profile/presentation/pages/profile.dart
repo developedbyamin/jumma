@@ -81,14 +81,20 @@ class _ProfileState extends State<Profile> {
             StreamBuilder(
                 stream: cubit.userData.stream,
                 builder: (context, snapshot) {
-                  final user = snapshot.data;
-                  return NameAndEmail(
-                    name: '${user!.firstName} ${user.lastName}',
-                    email: user.email,
-                    onTap: () {
-                      context.to(Pager.editProfile);
-                    },
-                  );
+                  if (snapshot.hasData) {
+                    final user = snapshot.data!;
+                    return NameAndEmail(
+                      name: '${user.firstName} ${user.lastName}',
+                      email: user.email,
+                      onTap: () {
+                        context.to(Pager.editProfile);
+                      },
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text('Error loading user data');
+                  } else {
+                    return CircularProgressIndicator(); // Yüklənir statusu üçün göstərici
+                  }
                 }),
             const SizedBox(
               height: 12,
@@ -100,7 +106,7 @@ class _ProfileState extends State<Profile> {
                 context.to(const AllOrders());
               },
             ),
-            const ProfileButton(text: 'Favorites', svg: AppVectors.favorites),
+            //const ProfileButton(text: 'Favorites', svg: AppVectors.favorites),
             gender == 'Female'
                 ? const SizedBox.shrink()
                 : ProfileButton(
@@ -110,7 +116,7 @@ class _ProfileState extends State<Profile> {
                       context.to(Pager.selectMosque);
                     },
                   ),
-            const ProfileButton(text: 'Languages', svg: AppVectors.languages),
+            //const ProfileButton(text: 'Languages', svg: AppVectors.languages),
             ProfileButton(
               text: 'Help & FAQ',
               svg: AppVectors.helpFaq,

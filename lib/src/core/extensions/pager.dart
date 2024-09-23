@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jumma/src/features/mosque/presentation/viewmodel/cubit/mosque_cubit.dart';
+import 'package:jumma/src/features/profile/presentation/pages/profile.dart';
 import 'package:jumma/src/features/profile/presentation/pages/select_mosque.dart';
 import 'package:jumma/src/features/profile/presentation/viewmodel/select_mosque/select_mosque_cubit.dart';
 import 'package:jumma/src/features/profile/presentation/viewmodel/user_data/user_data_cubit.dart';
@@ -27,6 +28,11 @@ class Pager {
   static Widget get changePassword => BlocProvider(
         create: (context) => ChangePasswordCubit(),
         child: const ChangePassword(),
+      );
+
+  static Widget get profile => BlocProvider(
+        create: (context) => UserDataCubit()..getUserData(),
+        child: const Profile(),
       );
 
   static Widget get selectMosque => MultiBlocProvider(

@@ -4,7 +4,7 @@ import '../../../../../core/config/theme/app_colors.dart';
 
 class CustomTextInput extends StatelessWidget {
   const CustomTextInput(
-      {Key? key,
+      {super.key,
       this.labelText,
       this.validator,
       this.obscureText = false,
@@ -12,8 +12,7 @@ class CustomTextInput extends StatelessWidget {
       this.hintText,
       this.readOnly = false,
       this.keyboardType,
-      this.maxLines = 1})
-      : super(key: key);
+      this.maxLines = 1});
 
   final String? labelText;
   final String? Function(String?)? validator;

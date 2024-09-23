@@ -15,6 +15,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
       final updateUserModel = userProfile.toModel();
       await sl<UpdateUserProfileUsecase>().call(params: updateUserModel);
       emit(UpdateProfileSuccess());
+      emit(UpdateProfileNavigateBack());
     } catch (e) {
       emit(UpdateProfileFailure('$e'));
       log('$e');

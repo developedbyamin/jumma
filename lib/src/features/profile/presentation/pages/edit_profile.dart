@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../core/common/bottom_navigation_bar/pages/root.dart';
 import '../../../../core/extensions/navigation_extension.dart';
 import '../../../auth/presentation/pages/signin.dart';
 import '../../domain/entities/user_profile_entity.dart';
@@ -32,11 +33,10 @@ class EditProfile extends StatelessWidget {
           BlocListener<UpdateProfileCubit, UpdateProfileState>(
             listener: (context, state) {
               if (state is UpdateProfileSuccess) {
-                context.read<UserDataCubit>().getUserData();
-                Navigator.of(context).pop();
+                context.removeAll(const Root());
               } else if (state is UpdateProfileFailure) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content:Text('Failed to update profile: ${state.message}')),
+                  SnackBar(content: Text('Failed to update profile: ${state.message}')),
                 );
               }
             },
@@ -47,11 +47,12 @@ class EditProfile extends StatelessWidget {
                     final surname = cubit.surnameController.text.trim();
                     final email = cubit.emailController.text.trim();
                     final phone = cubit.phoneController.text.trim();
-                    context.read<UpdateProfileCubit>().updateProfile(UserProfileEntity(
-                        firstName: name,
-                        lastName: surname,
-                        phoneNumber: phone,
-                        email: email));
+                    context.read<UpdateProfileCubit>().updateProfile(
+                        UserProfileEntity(
+                            firstName: name,
+                            lastName: surname,
+                            phoneNumber: phone,
+                            email: email));
                   }
                 },
                 child: Text(
@@ -156,7 +157,9 @@ class EditProfile extends StatelessWidget {
                                       color: AppColors.red,
                                       textColor: AppColors.white,
                                       onTap: () {
-                                        context.read<DeleteUserCubit>().deleteUser();
+                                        context
+                                            .read<DeleteUserCubit>()
+                                            .deleteUser();
                                       },
                                     ),
                                     8.h,

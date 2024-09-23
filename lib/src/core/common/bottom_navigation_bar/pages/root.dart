@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jumma/src/core/common/bottom_navigation_bar/pages/widgets/custom_bottom_navigator_bar.dart';
+import 'package:jumma/src/core/extensions/pager.dart';
 import 'package:jumma/src/features/home/presentation/pages/home.dart';
 import 'package:jumma/src/features/market/presentation/pages/market.dart';
 import 'package:jumma/src/features/mosque/presentation/pages/mosque.dart';
-import 'package:jumma/src/features/profile/presentation/pages/profile.dart';
 import 'package:jumma/src/features/surahs/presentation/pages/surahs_name.dart';
 import '../bloc/bottom_nav_cubit.dart';
 
@@ -20,12 +20,12 @@ class Root extends StatelessWidget {
         builder: (context, state) {
           return IndexedStack(
             index: state.selectedIndex,
-            children: const [
+            children: [
               Home(),
               Mosque(),
               SurahsName(),
               Market(),
-              Profile(),
+              Pager.profile
             ],
           );
         },
