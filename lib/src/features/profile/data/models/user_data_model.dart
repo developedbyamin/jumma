@@ -46,8 +46,10 @@ class UserDataModel {
 extension UserDataModelToEntity on UserDataModel {
   UserDataEntity toEntity() {
     return UserDataEntity(
+        email: email,
         firstName: firstName,
         lastName: lastName,
-        phoneNumber: phoneNumber, isImam: isImam);
+        phoneNumber: phoneNumber, 
+        isImam: isImam);
   }
 }

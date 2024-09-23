@@ -15,10 +15,10 @@ class Pager {
   static Widget get editProfile => MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => UpdateProfileCubit()..loadUserProfile(),
+            create: (context) => UpdateProfileCubit(),
           ),
           BlocProvider(
-            create: (context) => UserDataCubit(),
+            create: (context) => UserDataCubit()..loadUserProfile(),
           ),
         ],
         child: const EditProfile(),
