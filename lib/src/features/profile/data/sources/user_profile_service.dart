@@ -91,7 +91,7 @@ class UserProfileServiceImpl implements UserProfileService {
   @override
   Future<UserDataEntity> getUserData(String uId) async {
     try {
-      final url = 'https://jumma.svdev.me//api/User/$uId';
+      final url = 'https://jumma.svdev.me/api/User/$uId';
       final response = await _dio.get(url);
 
       if (response.statusCode == 200) {

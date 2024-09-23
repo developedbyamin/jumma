@@ -7,7 +7,7 @@ import '../../../../features/profile/presentation/viewmodel/user_data/user_data_
 import 'root.dart';
 
 class Auth extends StatelessWidget {
-  const Auth({Key? key}) : super(key: key);
+  const Auth({super.key});
 
   Future<String?> _loadUserProfile() async {
     final token = await TokenStore.getTokens();
