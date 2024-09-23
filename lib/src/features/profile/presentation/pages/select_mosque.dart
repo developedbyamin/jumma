@@ -7,7 +7,7 @@ import '../../../mosque/presentation/viewmodel/cubit/mosque_cubit.dart';
 import 'widgets/mosque_item.dart';
 
 class SelectMosque extends StatefulWidget {
-  const SelectMosque({Key? key}) : super(key: key);
+  const SelectMosque({super.key});
 
   @override
   State<SelectMosque> createState() => _SelectMosqueState();

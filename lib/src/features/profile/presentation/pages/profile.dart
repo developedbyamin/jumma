@@ -23,9 +23,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  String? email;
   String? gender;
-  String? uId;
 
   @override
   void initState() {
@@ -38,120 +36,109 @@ class _ProfileState extends State<Profile> {
     final accessToken = token!.accessToken;
 
     setState(() {
-      email = accessToken.getUserEmail();
       gender = accessToken.getGender();
-      uId = accessToken.getUId();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme
-        .of(context)
-        .textTheme;
-    return BlocProvider(
-      create: (context) => UserDataCubit(),
-      child: Scaffold(
-        backgroundColor: AppColors.lightBackground,
-        appBar: AppBar(
-          title: Text(
-            'Profile',
-            style: textTheme.headlineMedium,
+    final textTheme = Theme.of(context).textTheme;
+    final cubit = context.read<UserDataCubit>();
+    return Scaffold(
+      backgroundColor: AppColors.lightBackground,
+      appBar: AppBar(
+        title: Text(
+          'Profile',
+          style: textTheme.headlineMedium,
+        ),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      const NotificationPage(),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: child,
+                    );
+                  },
+                ),
+              );
+            },
+            icon: SvgPicture.asset(AppVectors.notification),
           ),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                    const NotificationPage(),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      return FadeTransition(
-                        opacity: animation,
-                        child: child,
-                      );
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          children: [
+            StreamBuilder(
+                stream: cubit.userData.stream,
+                builder: (context, snapshot) {
+                  final user = snapshot.data;
+                  return NameAndEmail(
+                    name: '${user!.firstName} ${user.lastName}',
+                    email: user.email,
+                    onTap: () {
+                      context.to(Pager.editProfile);
+                    },
+                  );
+                }),
+            const SizedBox(
+              height: 12,
+            ),
+            ProfileButton(
+              text: 'All orders',
+              svg: AppVectors.allOrders,
+              onTap: () {
+                context.to(const AllOrders());
+              },
+            ),
+            const ProfileButton(text: 'Favorites', svg: AppVectors.favorites),
+            gender == 'Female'
+                ? const SizedBox.shrink()
+                : ProfileButton(
+                    text: 'Mosque',
+                    svg: AppVectors.mescid,
+                    onTap: () {
+                      context.to(Pager.selectMosque);
                     },
                   ),
-                );
+            const ProfileButton(text: 'Languages', svg: AppVectors.languages),
+            ProfileButton(
+              text: 'Help & FAQ',
+              svg: AppVectors.helpFaq,
+              onTap: () {
+                context.to(const HelpFaq());
               },
-              icon: SvgPicture.asset(AppVectors.notification),
+            ),
+            ProfileButton(
+              text: 'Change Password',
+              svg: AppVectors.changePassword,
+              onTap: () {
+                context.to(Pager.changePassword);
+              },
+            ),
+            ProfileButton(
+              text: 'Contact Us',
+              svg: AppVectors.contactUs,
+              onTap: () {
+                context.to(const ContactUs());
+              },
+            ),
+            const ProfileButton(
+              text: 'Log out',
+              svg: AppVectors.logOut,
+              borderColor: AppColors.logOut,
+              textColor: AppColors.logOut,
             ),
           ],
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            children: [
-              BlocBuilder<UserDataCubit, UserDataState>(
-                builder: (context, state) {
-                  if (state is UserDataSuccess) {
-                    final user = state.user;
-
-                    return NameAndEmail(
-                      name: '${user.firstName} ${user.lastName}',
-                      email: email ?? '',
-                      onTap: () {
-                        context.to(Pager.editProfile);
-                      },
-                    );
-                  }
-                  return const Text('Error');
-                },
-              ),
-
-              const SizedBox(
-                height: 12,
-              ),
-              ProfileButton(
-                text: 'All orders',
-                svg: AppVectors.allOrders,
-                onTap: () {
-                  context.to(const AllOrders());
-                },
-              ),
-              const ProfileButton(text: 'Favorites', svg: AppVectors.favorites),
-              gender == 'Female' ?
-              const SizedBox.shrink() :
-              ProfileButton(
-                text: 'Mosque',
-                svg: AppVectors.mescid,
-                onTap: () {
-                  context.to(Pager.selectMosque);
-                },
-              ),
-              const ProfileButton(text: 'Languages', svg: AppVectors.languages),
-              ProfileButton(
-                text: 'Help & FAQ',
-                svg: AppVectors.helpFaq,
-                onTap: () {
-                  context.to(const HelpFaq());
-                },
-              ),
-              ProfileButton(
-                text: 'Change Password',
-                svg: AppVectors.changePassword,
-                onTap: () {
-                  context.to(Pager.changePassword);
-                },
-              ),
-              ProfileButton(
-                text: 'Contact Us',
-                svg: AppVectors.contactUs,
-                onTap: () {
-                  context.to(const ContactUs());
-                },
-              ),
-              const ProfileButton(
-                text: 'Log out',
-                svg: AppVectors.logOut,
-                borderColor: AppColors.logOut,
-                textColor: AppColors.logOut,
-              ),
-            ],
-          ),
         ),
       ),
     );

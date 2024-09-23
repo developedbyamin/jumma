@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jumma/src/core/extensions/jwt_extension.dart';
 import '../../../../core/extensions/navigation_extension.dart';
-import '../../../auth/data/sources/local/token_store.dart';
 import '../../../auth/presentation/pages/signin.dart';
 import '../../domain/entities/user_profile_entity.dart';
 import '../viewmodel/delete_user/delete_user_cubit.dart';
@@ -15,35 +13,13 @@ import '../../../../core/extensions/sizedbox_extension.dart';
 import 'widgets/custom_text_input.dart';
 import '../../../../core/config/theme/app_colors.dart';
 
-class EditProfile extends StatefulWidget {
-  const EditProfile({Key? key}) : super(key: key);
-
-  @override
-  State<EditProfile> createState() => _EditProfileState();
-}
-
-class _EditProfileState extends State<EditProfile> {
-  String uId = '';
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _loadUserProfile());
-  }
-
-  Future<void> _loadUserProfile() async {
-    final token = await TokenStore.getTokens();
-    final accessToken = token!.accessToken;
-
-    setState(() {
-      uId = accessToken.getUId();
-    });
-  }
+class EditProfile extends StatelessWidget {
+  const EditProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final cubit = context.read<UpdateProfileCubit>();
+    final cubit = context.read<UserDataCubit>();
     final formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
@@ -56,7 +32,7 @@ class _EditProfileState extends State<EditProfile> {
           BlocListener<UpdateProfileCubit, UpdateProfileState>(
             listener: (context, state) {
               if (state is UpdateProfileSuccess) {
-                context.read<UserDataCubit>().getUserData(uId);
+                context.read<UserDataCubit>().getUserData();
                 Navigator.of(context).pop();
               } else if (state is UpdateProfileFailure) {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -71,7 +47,7 @@ class _EditProfileState extends State<EditProfile> {
                     final surname = cubit.surnameController.text.trim();
                     final email = cubit.emailController.text.trim();
                     final phone = cubit.phoneController.text.trim();
-                    cubit.updateProfile(UserProfileEntity(
+                    context.read<UpdateProfileCubit>().updateProfile(UserProfileEntity(
                         firstName: name,
                         lastName: surname,
                         phoneNumber: phone,
@@ -180,7 +156,7 @@ class _EditProfileState extends State<EditProfile> {
                                       color: AppColors.red,
                                       textColor: AppColors.white,
                                       onTap: () {
-                                        context.read<DeleteUserCubit>().deleteUser(cubit.uId);
+                                        context.read<DeleteUserCubit>().deleteUser();
                                       },
                                     ),
                                     8.h,
