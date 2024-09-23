@@ -1,4 +1,4 @@
-class SignInUserEntity {
+ class SignInUserEntity {
   final String email;
   final String password;
 

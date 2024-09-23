@@ -61,10 +61,11 @@ class AppInterceptor extends Interceptor {
 
   Future<String?> refreshAccessToken(String refreshToken) async {
     final Dio dio = Dio();
-    dio.options.headers['Authorization'] = 'Bearer $refreshToken';
+    dio.options.headers['Content-Type'] = 'application/json-patch+json';
+    dio.options.headers['accept'] = '*/*';
 
     try {
-      final response = await dio.post(ApiKey.baseUrl + ApiKey.refresh);
+      final response = await dio.post(ApiKey.refresh,data: {'refreshToken' : refreshToken});
 
       if (response.statusCode == 200) {
         debugPrint("Refresh response: ${response.data}");
