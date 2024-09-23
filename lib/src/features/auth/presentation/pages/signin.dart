@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:jumma/src/core/common/bottom_navigation_bar/pages/auth.dart';
+import 'package:jumma/src/core/extensions/jwt_extension.dart';
 import 'package:jumma/src/core/config/theme/app_colors.dart';
 import 'package:jumma/src/features/auth/presentation/pages/widgets/social_icons.dart';
 import '../../../../core/assets/assets/app_vectors.dart';
+import '../../../../core/common/bottom_navigation_bar/pages/root.dart';
 import '../../../../core/common/widgets/elevated_button.dart';
+import '../../data/sources/local/token_store.dart';
 import '../../domain/entities/signin_user.dart';
 import '../viewmodel/signin_cubit.dart';
 import 'signup.dart';
@@ -37,7 +39,7 @@ class SignInPage extends StatelessWidget {
             child: Form(
               key: _formKey,
               child: BlocConsumer<SignInCubit, SignInState>(
-                listener: (context, state) {
+                listener: (context, state) async {
                   if (state is SignInLoading) {
                     showDialog(
                       context: context,
@@ -49,24 +51,11 @@ class SignInPage extends StatelessWidget {
                     );
                   } else if (state is SignInSuccess) {
                     Navigator.of(context, rootNavigator: true)
-                        .pop(); // Dismiss the dialog
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'Giriş edildi!',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        backgroundColor: AppColors.primary,
-                        duration: Duration(seconds: 1),
-                      ),
-                    );
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Auth()
-                      ),
-                      (Route<dynamic> route) => false,
-                    );
+                        .pop();
+                    final token = await TokenStore.getTokens();
+                    final accessToken = token?.accessToken;
+                    final userID = accessToken?.getUId();
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Root(),));
                   } else if (state is SignInFailure) {
                     Navigator.of(context, rootNavigator: true)
                         .pop(); // Dismiss the dialog

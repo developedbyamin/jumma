@@ -29,16 +29,13 @@ class AuthServiceImpl extends AuthService {
         data: signInUserReq.toJson(),
       );
       if (response.statusCode == 200) {
-
         String accessToken = response.data['accessToken'];
         String refreshToken = response.data['refreshToken'];
-
         AuthTokens tokens = AuthTokens(
           accessToken: accessToken,
           refreshToken: refreshToken,
         );
         await TokenStore.saveTokens(tokens);
-
         return const Right('success');
       } else {
         return const Left('message');
