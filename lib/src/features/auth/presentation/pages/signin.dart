@@ -54,7 +54,6 @@ class SignInPage extends StatelessWidget {
                         .pop();
                     final token = await TokenStore.getTokens();
                     final accessToken = token?.accessToken;
-                    final userID = accessToken?.getUId();
                     Navigator.push(context, MaterialPageRoute(builder: (context) => Root(),));
                   } else if (state is SignInFailure) {
                     Navigator.of(context, rootNavigator: true)

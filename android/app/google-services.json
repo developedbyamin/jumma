@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "143152058747",
+    "project_id": "jumma-f33de",
+    "storage_bucket": "jumma-f33de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143152058747:android:e0e2d85b06da4fbdfd6dde",
+        "android_client_info": {
+          "package_name": "com.jumma"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwiB0mempAADSK3uDcFXdJT6T02aQanpY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

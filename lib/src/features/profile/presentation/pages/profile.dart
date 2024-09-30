@@ -42,7 +42,9 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final textTheme = Theme
+        .of(context)
+        .textTheme;
     final cubit = context.read<UserDataCubit>();
     return Scaffold(
       backgroundColor: AppColors.lightBackground,
@@ -59,7 +61,7 @@ class _ProfileState extends State<Profile> {
                 context,
                 PageRouteBuilder(
                   pageBuilder: (context, animation, secondaryAnimation) =>
-                      const NotificationPage(),
+                  const NotificationPage(),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
                     return FadeTransition(
@@ -104,12 +106,12 @@ class _ProfileState extends State<Profile> {
             gender == 'Female'
                 ? const SizedBox.shrink()
                 : ProfileButton(
-                    text: 'Mosque',
-                    svg: AppVectors.mescid,
-                    onTap: () {
-                      context.to(Pager.selectMosque);
-                    },
-                  ),
+              text: 'Mosque',
+              svg: AppVectors.mescid,
+              onTap: () {
+                context.to(Pager.selectMosque);
+              },
+            ),
             const ProfileButton(text: 'Languages', svg: AppVectors.languages),
             ProfileButton(
               text: 'Help & FAQ',
