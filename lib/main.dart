@@ -9,7 +9,7 @@ import 'package:jumma/src/core/config/theme/appTheme/app_theme.dart';
 import 'package:jumma/src/features/home/presentation/viewmodel/fetch_prayer_times_bloc.dart';
 import 'package:jumma/src/features/profile/presentation/viewmodel/user_data/user_data_cubit.dart';
 import 'package:jumma/src/features/splash/presentation/pages/splash.dart';
-import 'package:jumma/src/firebase_notification.dart';
+import 'package:jumma/firebase_notification.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
