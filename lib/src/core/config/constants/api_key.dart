@@ -1,5 +1,5 @@
-class ApiKey{
-  static const baseUrl = 'https://jumma.svdev.me';
+class ApiKey {
+  static const baseUrl = 'https://api.jumma.app';
   static const createUser = '$baseUrl/api/Account/Register';
   static const login = '$baseUrl/api/Account/Login';
   static const refresh = '$baseUrl/api/Account/RefreshToken';
@@ -7,5 +7,3 @@ class ApiKey{
   static const changePass = '$baseUrl/api/Profile/UpdatePassword';
   static const selectMosque = '$baseUrl/api/Profile/SelectMosque';
 }
-
-

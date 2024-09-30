@@ -1,4 +1,4 @@
-package com.example.jumma
+package com.jumma.app
 
 import io.flutter.embedding.android.FlutterActivity
 

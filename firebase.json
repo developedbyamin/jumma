@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"android":{"default":{"projectId":"jumma-app","appId":"1:735356508775:android:db8f09c80ceee81a8a92c2","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"jumma-app","configurations":{"android":"1:735356508775:android:db8f09c80ceee81a8a92c2","ios":"1:735356508775:ios:44275de05fa726a08a92c2"}}}}}}
